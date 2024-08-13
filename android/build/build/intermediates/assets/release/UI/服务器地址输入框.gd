@@ -1,0 +1,38 @@
+extends LineEdit
+
+
+var server_IP:String
+
+func _on_focus_exited():
+	server_IP = text
+	if server_IP == "":
+		text = HomeworkRequester.default_url
+	write_server_IP()
+
+## 等价于_on_focus_exited()
+func _on_text_submitted(new_text):
+	hide()
+	show()
+	# 这是用来释放焦点的
+	# 这里相当于间接调用_on_focus_exited()
+
+func write_server_IP():
+	var server_IP_file = FileAccess.open("user://server_IP.data", FileAccess.WRITE)
+	server_IP_file.store_string(server_IP)
+	# print("已写入服务器地址:" + server_IP)
+
+func read_server_IP():
+	var server_IP_file = FileAccess.open("user://server_IP.data", FileAccess.READ)
+	if not server_IP_file:
+		print("未找到服务器地址文件, 填入默认IP")
+		server_IP = HomeworkRequester.default_url
+		write_server_IP()
+		return
+	
+	var user_server_IP = server_IP_file.get_as_text()
+	text = user_server_IP
+	_on_focus_exited()
+
+func _ready():
+	read_server_IP()
+	_on_focus_exited()

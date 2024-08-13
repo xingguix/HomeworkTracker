@@ -1,0 +1,11 @@
+extends Panel
+
+
+func _on_cancel_pressed():
+	$"../https".delete_homework()
+	FileAccess.open("user://check_file.txt", FileAccess.WRITE).store_string("")
+	$".".visible = false
+	$"../Panel/ScrollContainer/整体".refresh()
+
+func _on_accept_pressed():
+	self.hide()

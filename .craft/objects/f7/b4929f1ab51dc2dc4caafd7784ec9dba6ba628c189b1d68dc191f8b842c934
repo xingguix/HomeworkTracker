@@ -1,0 +1,21 @@
+extends HTTPRequest
+
+var ops:Array
+
+func get_ops():
+	cancel_request()
+	var custom_headers = $"..".get_custom_headers()
+	request($"..".url + "/getOPs", custom_headers)
+	await request_completed
+	return ops
+
+func _on_request_completed(result, response_code, headers, body):
+	var returned = JSON.parse_string(body.get_string_from_utf8())
+	if returned is Array:
+		ops = returned
+	else:
+		ops = []
+	
+func _ready():
+	pass
+	# print(await get_ops())

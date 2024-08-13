@@ -1,0 +1,5 @@
+extends HTTPRequest
+
+
+func delete_homework():
+	request($"..".url + "/delete")

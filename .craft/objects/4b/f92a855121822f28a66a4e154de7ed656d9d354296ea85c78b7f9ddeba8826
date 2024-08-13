@@ -1,0 +1,13 @@
+extends TextureButton
+
+@onready var tip = %"提示框"
+
+func _on_pressed():
+	tip.pop("作业删除", "要清除全部作业吗？请再三考虑", self, "", "")
+	await tip.finished
+	if tip.accepted == true:
+		tip.pop("确认？", "你真的要这么做吗？恶意扰乱会被取消修改资格哦！", self, "delete", "")
+
+func delete():
+	%https.delete_homework()
+	%"整体".refresh()

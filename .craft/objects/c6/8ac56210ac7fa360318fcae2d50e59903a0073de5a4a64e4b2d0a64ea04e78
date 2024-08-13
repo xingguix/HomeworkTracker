@@ -1,0 +1,132 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="top.xinggui.homework"
+4    android:installLocation="auto"
+5    android:versionCode="4"
+6    android:versionName="1.0.0" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="24"
+10        android:targetSdkVersion="34" />
+11
+12    <supports-screens
+12-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:9:5-13:40
+13        android:largeScreens="true"
+13-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:12:9-36
+14        android:normalScreens="true"
+14-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:11:9-37
+15        android:smallScreens="true"
+15-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:10:9-36
+16        android:xlargeScreens="true" />
+16-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:13:9-37
+17
+18    <uses-feature
+18-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:15:5-17:35
+19        android:glEsVersion="0x00030000"
+19-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:16:9-41
+20        android:required="true" />
+20-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:17:9-32
+21
+22    <uses-permission android:name="android.permission.INTERNET" />
+22-->C:\savefiles\godotproject\83homework\android\build\src\release\AndroidManifest.xml:11:5-67
+22-->C:\savefiles\godotproject\83homework\android\build\src\release\AndroidManifest.xml:11:22-64
+23
+24    <application
+24-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:19:5-53:19
+25        android:allowBackup="false"
+25-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:21:9-36
+26        android:appCategory="productivity"
+26-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:23:9-35
+27        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+27-->[androidx.core:core:1.2.0] C:\Users\xz112\.gradle\caches\transforms-3\9bcb1a65f5938aad264f4d73e9a06f28\transformed\core-1.2.0\AndroidManifest.xml:24:18-86
+28        android:extractNativeLibs="false"
+29        android:hasFragileUserData="false"
+29-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:25:9-43
+30        android:icon="@mipmap/icon"
+30-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:22:9-36
+31        android:isGame="false"
+31-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:24:9-30
+32        android:label="@string/godot_project_name_string"
+32-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:20:9-58
+33        android:requestLegacyExternalStorage="false" >
+33-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:26:9-53
+34        <activity
+34-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:34:9-51:20
+35            android:name="com.godot.game.GodotApp"
+35-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:35:13-37
+36            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|density|keyboard|navigation|screenLayout|uiMode"
+36-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:42:13-141
+37            android:excludeFromRecents="false"
+37-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:39:13-47
+38            android:exported="true"
+38-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:40:13-36
+39            android:label="@string/godot_project_name_string"
+39-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:36:13-62
+40            android:launchMode="singleInstancePerTask"
+40-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:38:13-55
+41            android:resizeableActivity="true"
+41-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:43:13-47
+42            android:screenOrientation="userPortrait"
+42-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:41:13-50
+43            android:theme="@style/GodotAppSplashTheme" >
+43-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:37:13-55
+44            <intent-filter>
+44-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:46:13-50:29
+45                <action android:name="android.intent.action.MAIN" />
+45-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:47:17-69
+45-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:47:25-66
+46
+47                <category android:name="android.intent.category.DEFAULT" />
+47-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:48:17-76
+47-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:48:27-73
+48                <category android:name="android.intent.category.LAUNCHER" />
+48-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:49:17-77
+48-->C:\savefiles\godotproject\83homework\android\build\AndroidManifest.xml:49:27-74
+49            </intent-filter>
+50        </activity>
+51        <!-- Records the version of the Godot editor used for building -->
+52        <meta-data
+53            android:name="org.godotengine.editor.version"
+54            android:value="4.2.1.stable" /> <!-- Records the version of the Godot library -->
+55        <meta-data
+55-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:14:9-16:44
+56            android:name="org.godotengine.library.version"
+56-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:15:13-59
+57            android:value="4.2.1.stable" />
+57-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:16:13-41
+58
+59        <service android:name="org.godotengine.godot.GodotDownloaderService" />
+59-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:18:9-80
+59-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:18:18-77
+60
+61        <activity
+61-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:20:9-24:75
+62            android:name="org.godotengine.godot.utils.ProcessPhoenix"
+62-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:21:13-70
+63            android:exported="false"
+63-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:22:13-37
+64            android:process=":phoenix"
+64-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:23:13-39
+65            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+65-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:24:13-72
+66
+67        <provider
+67-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:26:9-34:20
+68            android:name="androidx.core.content.FileProvider"
+68-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:27:13-62
+69            android:authorities="top.xinggui.homework.fileprovider"
+69-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:28:13-64
+70            android:exported="false"
+70-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:29:13-37
+71            android:grantUriPermissions="true" >
+71-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:30:13-47
+72            <meta-data
+72-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:31:13-33:64
+73                android:name="android.support.FILE_PROVIDER_PATHS"
+73-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:32:17-67
+74                android:resource="@xml/godot_provider_paths" />
+74-->[godot-lib.template_release.aar] C:\Users\xz112\.gradle\caches\transforms-3\bce0b6f33e6a5d0c9706dbd1003ff54d\transformed\jetified-godot-lib.template_release\AndroidManifest.xml:33:17-61
+75        </provider>
+76    </application>
+77
+78</manifest>

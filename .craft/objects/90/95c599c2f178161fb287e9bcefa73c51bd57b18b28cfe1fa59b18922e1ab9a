@@ -1,0 +1,221 @@
+[gd_scene load_steps=18 format=3 uid="uid://b7u4jfuaued81"]
+
+[ext_resource type="Script" path="res://UI/task.gd" id="1_u44pq"]
+[ext_resource type="Texture2D" uid="uid://v8fn5swq00vr" path="res://UI/texture/check-mark.png" id="2_122t8"]
+[ext_resource type="FontFile" uid="uid://d1i1dliwg4n0a" path="res://UI/sans/SmileySans-Oblique.ttf" id="3_c8kiw"]
+[ext_resource type="AudioStream" uid="uid://jo86bw338q2d" path="res://UI/sound/buttonclick.wav" id="4_ligon"]
+[ext_resource type="AudioStream" uid="uid://bl1llxleu3tfl" path="res://UI/sound/yee.wav" id="5_6wjpc"]
+[ext_resource type="Script" path="res://UI/yeesound.gd" id="6_76hsb"]
+[ext_resource type="Texture2D" uid="uid://65cs8dnbcpau" path="res://UI/texture/trash-can.png" id="7_0bfa4"]
+[ext_resource type="Script" path="res://UI/trash.gd" id="8_p0vwy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvbti"]
+bg_color = Color(0.486275, 0.596078, 0.839216, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mj2fk"]
+bg_color = Color(0.968627, 0.988235, 1, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.447059, 0.882353, 0.886275, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11jyy"]
+bg_color = Color(0.717647, 0.733333, 0.741176, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.447059, 0.882353, 0.886275, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_csven"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mtlb6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ef03r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0i8rg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_su70n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5e3y"]
+
+[node name="任务" type="Panel"]
+custom_minimum_size = Vector2(0, 145)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.0695833
+offset_bottom = 9.00009
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rvbti")
+script = ExtResource("1_u44pq")
+metadata/_edit_use_anchors_ = true
+
+[node name="完成按钮" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 31.0
+offset_top = -41.0
+offset_right = 113.0
+offset_bottom = 41.0
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_mj2fk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_11jyy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mj2fk")
+
+[node name="TextureRect" type="TextureRect" parent="完成按钮"]
+visible = false
+modulate = Color(0.427451, 0.384314, 0.819608, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -11.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_122t8")
+expand_mode = 1
+
+[node name="Label" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 144.0
+offset_top = -29.0
+offset_right = 892.0
+offset_bottom = 52.0
+grow_vertical = 2
+mouse_filter = 1
+theme_override_colors/background_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_c8kiw")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_csven")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mtlb6")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_ef03r")
+editable = false
+wrap_mode = 1
+scroll_fit_content_height = true
+
+[node name="buttonclicksound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ligon")
+volume_db = 10.0
+
+[node name="yeesound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_6wjpc")
+script = ExtResource("6_76hsb")
+
+[node name="Timer" type="Timer" parent="yeesound"]
+one_shot = true
+
+[node name="trash" type="TextureButton" parent="." node_paths=PackedStringArray("task", "check_mark")]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -143.0
+offset_top = -71.0
+offset_right = -31.0
+offset_bottom = 49.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("7_0bfa4")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("8_p0vwy")
+task = NodePath("..")
+check_mark = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="trash"]
+visible = false
+modulate = Color(0.608746, 0.219502, 0.871971, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -11.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_122t8")
+expand_mode = 1
+
+[node name="大型完成按钮" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10463
+anchor_right = 0.825926
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Date" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.0944444
+anchor_right = 0.278704
+anchor_bottom = 0.284091
+metadata/_edit_use_anchors_ = true
+
+[node name="DateLabel" type="Label" parent="Date"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -21.0
+offset_right = 98.0
+offset_bottom = 21.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "还剩 天"
+
+[node name="DateInput" type="LineEdit" parent="Date"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -21.0
+offset_right = 112.0
+offset_bottom = 21.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0i8rg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_su70n")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_j5e3y")
+alignment = 1
+
+[connection signal="pressed" from="完成按钮" to="." method="_on_完成按钮_pressed"]
+[connection signal="pressed" from="trash" to="trash" method="_on_pressed"]
+[connection signal="pressed" from="大型完成按钮" to="." method="_on_完成按钮_pressed"]
+[connection signal="focus_exited" from="Date/DateInput" to="." method="_on_date_input_focus_exited"]
+[connection signal="text_submitted" from="Date/DateInput" to="." method="_on_date_input_text_submitted"]

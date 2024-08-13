@@ -1,0 +1,24 @@
+extends AspectRatioContainer
+
+@export var task: String = "示例task"
+
+func get_subject():
+	return $"任务".get_subject()
+
+func set_subject(sub: String):
+	$"任务".set_subject(sub)
+
+func _process(delta):
+	$"任务".task = task
+
+func toggle():
+	$"任务".toggle()
+	
+func get_state():
+	return $"任务".get_state()
+
+func get_text() -> String:
+	return $"任务".get_text()
+
+func set_state(b: bool):
+	$"任务".set_state(b)

@@ -1,0 +1,8 @@
+res://UI/任务.tscn
+res://UI/trash.gd
+res://http/http_request.tscn
+res://UI/mainUI.tscn
+res://UI/任务栏目.tscn
+res://UI/学科栏.tscn
+res://UI/整体.gd
+res://UI/显示按钮.gd

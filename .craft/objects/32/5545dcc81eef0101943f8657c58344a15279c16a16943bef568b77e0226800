@@ -1,0 +1,115 @@
+extends Panel
+
+@onready var text = $"正文"
+@onready var title = $"标题"
+@onready var accept_button = $accept
+@onready var cancel_button = $cancel
+@onready var tip_timer = $tipTimer
+
+signal finished
+signal button_pressed
+var accepted: bool
+var animate_finished: bool = false
+var pop_array: Array
+var showing: bool = false
+
+func pop(show_title: String, show_text: String, object: Object, accept_func: StringName, cancel_func: StringName, notificationly: bool = false, accept_text: String = "确认", cancel_text: String = "取消"):
+	pop_array.append(
+		{"show_title":show_title,
+		"show_text":show_text,
+		"object":object,
+		"accept_func":accept_func,
+		"cancel_func":cancel_func,
+		"notificationly":notificationly,
+		"accept_text":accept_text,
+		"cancel_text":cancel_text
+		}
+	)
+
+func switch_size():
+	var line_count = text.get_line_count()
+	var total_height = (text.get_line_height() * (line_count + 1) + title.get_line_height() + accept_button.size.y)
+	size.y = total_height
+	
+func process_pop(show_title: String, show_text: String, object: Object, accept_func: StringName, cancel_func: StringName, notificationly: bool = false, accept_text: String = "确认", cancel_text: String = "取消"):
+	showing = true
+	# 可将accept_func或取消函数设置为空（""）来不执行
+	accept_button.text = accept_text
+	cancel_button.text = cancel_text
+	
+	animate_finished = false
+	title.text = show_title
+	text.text = show_text
+	switch_size()
+	better_show()
+	cancel_button.visible = not notificationly
+	if notificationly:
+		await accept_button.pressed
+		if object.has_method(accept_func):
+				object.call(accept_func)
+		better_hide()
+	else:
+		await button_pressed
+		if accepted:
+			better_hide()
+			if object.has_method(accept_func):
+				object.call(accept_func)
+		else:
+			better_hide()
+			if object.has_method(cancel_func):
+				object.call(cancel_func)
+	
+	await animate_finished
+	tip_timer.start()
+	await tip_timer.timeout
+	showing = false
+
+func _on_cancel_pressed():
+	accepted = false
+	emit_signal("button_pressed")
+
+func _on_accept_pressed():
+	accepted = true
+	emit_signal("button_pressed")
+
+func better_show():
+	pivot_centerly()
+	self.show()
+	scale = Vector2(0,0)
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1,1), 0.3).set_trans(Tween.TRANS_CIRC)
+	await tween.finished
+	animate_finished = true
+
+func better_hide():
+	pivot_centerly()
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(0,0), 0.2).set_trans(Tween.TRANS_CIRC)
+	await tween.finished
+	self.hide()
+	await tween.finished
+	animate_finished = true
+
+func pivot_centerly():
+	pivot_offset = size / 2
+
+func _physics_process(delta):
+	if not showing and pop_array.size() > 0:
+		var pop_data = pop_array.pop_front() # 弹出数组中的第一个元素，并返回该元素
+		process_pop(
+			pop_data["show_title"],
+			pop_data["show_text"],
+			pop_data["object"],
+			pop_data["accept_func"],
+			pop_data["cancel_func"],
+			pop_data["notificationly"],
+			pop_data["accept_text"],
+			pop_data["cancel_text"]
+		)
+
+func _ready():
+	HomeworkRequester.get_error.connect(Callable(self, "_on_get_error"))
+
+func _on_get_error(text: String):
+	print("ERROR GOT")
+	pop("发生了点意外...\n", text, self, "", "", true)

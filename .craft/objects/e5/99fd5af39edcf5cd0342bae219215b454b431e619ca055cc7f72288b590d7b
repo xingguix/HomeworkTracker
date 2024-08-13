@@ -1,0 +1,5 @@
+[folding]
+
+node_unfolds=[NodePath("."), PackedStringArray("Layout", "Alignment"), NodePath("任务"), PackedStringArray("Layout")]
+resource_unfolds=["res://UI/task_field.tscn::GDScript_g0x6t", PackedStringArray(), "res://UI/task.tscn::StyleBoxFlat_rvbti", PackedStringArray()]
+nodes_folded=[]

@@ -1,0 +1,5 @@
+[folding]
+
+node_unfolds=[NodePath("."), PackedStringArray("Theme Overrides/constants", "Layout/Container Sizing", "Theme Overrides", "Layout", "Mouse"), NodePath("Label"), PackedStringArray("Theme Overrides", "Theme Overrides/font_sizes", "Mouse")]
+resource_unfolds=[]
+nodes_folded=[]

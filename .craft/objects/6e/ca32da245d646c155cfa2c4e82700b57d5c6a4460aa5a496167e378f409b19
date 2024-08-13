@@ -1,0 +1,8 @@
+extends Label
+
+func _on_setting_button_pressed():
+	var ops = await TransferStation.https.get_ops()
+	text = "作者与管理员:\n"
+	for i in ops:
+		text += i + '、'
+	text = text.substr(0, len(text)-1)

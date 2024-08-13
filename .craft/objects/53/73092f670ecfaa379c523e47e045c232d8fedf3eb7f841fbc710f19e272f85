@@ -1,0 +1,11 @@
+extends HTTPRequest
+
+func send_post_request(data):
+	var custom_headers = ["X-App-Version: " + str($"..".version) , "Content-Type: application/json"]
+	# 开始发送请求
+	var error = request($"..".url + "/post", custom_headers, HTTPClient.METHOD_POST, data)
+	if error != OK:
+		print("请求发送失败")
+
+func _on_request_completed(result, response_code, headers, body):
+	print(response_code)

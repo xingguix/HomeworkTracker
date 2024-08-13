@@ -1,0 +1,12 @@
+extends Panel
+
+signal cancel
+
+
+func _on_cancel_pressed():
+	$".".visible = false
+	emit_signal("cancel")
+
+
+func _on_accept_pressed():
+	$"确定框".show()

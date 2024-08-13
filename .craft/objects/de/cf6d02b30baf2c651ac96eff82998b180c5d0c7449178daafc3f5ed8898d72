@@ -1,0 +1,5 @@
+[folding]
+
+node_unfolds=[NodePath("."), PackedStringArray("Alignment", "Layout/Container Sizing", "Layout")]
+resource_unfolds=["res://UI/任务.tscn::StyleBoxFlat_rvbti", PackedStringArray("Corner Radius")]
+nodes_folded=[]

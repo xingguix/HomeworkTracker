@@ -1,0 +1,14 @@
+extends Control
+
+@onready var pop = %"提示框"
+
+func _ready():
+	var poster: HTTPRequest
+	for i in TransferStation.https.get_children():
+		if i.name == "post":
+			poster = i
+	
+	poster.get_return.connect(_on_return_geted)
+
+func _on_return_geted(text: String):
+	pop.pop("出错啦！", text, self, "", "", true)

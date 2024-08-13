@@ -1,0 +1,11 @@
+extends Node
+
+
+var url = "http://42.202.37.195:27256"
+
+func post_homework(data):
+	$post.send_post_request(url + "/post", data)
+
+func get_homework():
+	return await $get.get_homework()
+

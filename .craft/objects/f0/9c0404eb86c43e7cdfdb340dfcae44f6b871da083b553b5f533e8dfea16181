@@ -1,0 +1,16 @@
+extends Button
+
+@onready var cool_down = $cool_down
+var cooling: bool = false
+
+func _on_pressed():
+	if not cooling and await TransferStation.https.check_op(TransferStation.https.key):
+		cool_down.free()
+		get_tree().change_scene_to_file("res://OPUI/op.tscn")
+		return
+	cooling = true
+	cool_down.start()
+		
+
+func _on_cool_down_timeout():
+	cooling = false

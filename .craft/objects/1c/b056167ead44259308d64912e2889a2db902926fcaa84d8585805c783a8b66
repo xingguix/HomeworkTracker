@@ -1,0 +1,154 @@
+extends VBoxContainer
+
+@onready var https = $"../../../https"
+var subject_column = preload("res://UI/学科栏.tscn")
+@onready var timer = $"../../Timer"
+@onready var refresh_button = %refreshButton
+@onready var pop = %"提示框"
+
+var cooldown: bool = false
+@onready var cooldown_timer = $"../../refreshButton/cooldown_timer"
+
+func _ready():
+	$"../../refreshButton".size = Vector2(128, 128)
+	refresh(true)
+	
+func write_check():
+	var check_file = FileAccess.open("user://check_file.txt", FileAccess.WRITE)
+	var okayList = [] # ["语文,卷子"]
+	
+	for subject in get_children():
+		for i in subject.get_children():
+			if not i is Label and i.name != "任务栏模板" and i.get_state() == true:
+				okayList.append(subject.subject_name + "," + i.get_text())
+	
+	check_file.store_csv_line(okayList)
+
+func read_check():
+	if not FileAccess.file_exists("user://check_file.txt"):
+		return
+		
+	var okayList = FileAccess.open("user://check_file.txt", FileAccess.READ).get_csv_line()
+	for i in okayList:
+		var s = i.split(",")
+		for subject in get_children():
+			for task in subject.get_children():
+				if not task is Label and task.name != "任务栏模板":
+					if subject.subject_name == s[0] and task.get_text() == s[1]:
+						task.set_state(true)
+
+func open_website():
+	OS.shell_open("http://42.202.37.195:27256") 
+
+func sort():
+	var subject_array: Array = ["语文", "数学", "英语", "物理", "政治", "历史", "地理", "生物", "其他", "提醒"]
+	var index_map: Dictionary = {}
+	
+	# 为每个科目建立索引映射
+	for i in range(subject_array.size()):
+		index_map[subject_array[i]] = i
+	
+	# 根据科目顺序移动子节点
+	for child in get_children():
+		var label_text = child.get_node("Label").text
+		var target_index = index_map.get(label_text, -1)
+		if target_index >= 0:
+			move_child(child, target_index)
+
+
+	
+func refresh(on_ready: bool = false) -> bool:
+	if not on_ready and cooldown:
+		print("刷新冷却中")
+		return false
+	
+	print("刷新中" + "on_ready = ", on_ready)
+	self.custom_minimum_size = Vector2.ZERO
+	
+	for i in get_children():
+		i.queue_free()
+	
+	if not on_ready:
+		write_check()
+	
+	var original = await https.get_homework()
+	if not original:
+		return 0
+	
+	for subject in original:  # [{ "subject": "数学", "contents": ["数学卷", "整理笔记"] }]
+		# 先判断是不是更新提醒
+		if subject["subject"] == "提醒":
+			var now_version = TransferStation.https.version
+			var newest_version:String = subject["contents"][1].split("=")[1]
+			var update_type:String = subject["contents"][0]
+			if update_type == "%important_update":
+				pop.pop("重大更新", "有重大更新，当前版本为" + str(now_version) + "最新版本为" + newest_version + "\n点击“确定”来跳转到下载网站", self, "open_website", "")
+				continue
+			elif update_type == "%normal_update":
+				pop.pop("更新", "有更新，当前版本为" + str(now_version) + "最新版本为" + newest_version + "\n点击“确定”来跳转到下载网站", self, "open_website", "")
+				continue
+		
+		var column = subject_column.instantiate()
+		column.subject_name = subject["subject"]
+		add_child(column)
+		self.custom_minimum_size.y += 200
+		for task in subject.contents:
+			column.add_task(task)
+			column.size_flags_stretch_ratio += 1
+			self.custom_minimum_size.y += 170
+	# 设置每个的subject(这步好像可以优化)
+	for subject in get_children():
+		for task in subject.get_children():
+			if not task is Label and task.name != "任务栏模板":
+				task.set_subject(subject.subject_name)
+	$"../../Timer".start()
+	await $"../../Timer".timeout
+	read_check()
+	arrange_vertical()
+	if not on_ready:
+		start_cooldown()
+	sort()
+	
+	return true
+
+func _on_refresh_button_button_down():
+	refresh_button.hide()
+	refresh_button.show()
+	# 用来释放焦点
+	
+	var timer = $"../../Timer"
+
+	var tween = create_tween()
+	tween.tween_property($"../../refreshButton", "rotation", 30, 1.5)
+	%refreshButton.rotation = 0
+	
+	if not await refresh():
+		return
+
+
+func _on_timer_timeout(): # rotate timer
+	%refreshButton.rotation += 1
+
+
+func _on_定时刷新_timeout():
+	refresh()
+
+
+func _on_定时写入_timeout():
+	write_check()
+
+func arrange_vertical():
+	var spacing = 10 # 子节点之间的间距
+	var current_y = 0 # 开始布局的Y坐标
+
+	for child in get_children():
+		if child.visible: # 只排列可见的子节点
+			child.position = Vector2(child.position.x, current_y)
+			current_y += child.size.y + spacing
+
+func start_cooldown():
+	cooldown = true
+	cooldown_timer.start()
+
+func _on_cooldown_timer_timeout():
+	cooldown = false

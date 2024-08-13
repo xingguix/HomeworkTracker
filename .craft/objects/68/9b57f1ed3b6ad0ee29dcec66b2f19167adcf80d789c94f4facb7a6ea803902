@@ -1,0 +1,8 @@
+extends VBoxContainer
+
+@onready var label = $Label
+
+@export var subject_name = "数学"
+
+func _process(delta):
+	label.text = subject_name

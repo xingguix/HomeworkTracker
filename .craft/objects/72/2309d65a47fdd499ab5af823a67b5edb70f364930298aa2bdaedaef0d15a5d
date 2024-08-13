@@ -1,0 +1,6 @@
+extends HTTPRequest
+
+
+func delete_homework():
+	var custom_headers = ["X-App-Version: " + str($"..".version)]
+	request($"..".url + "/delete", custom_headers)

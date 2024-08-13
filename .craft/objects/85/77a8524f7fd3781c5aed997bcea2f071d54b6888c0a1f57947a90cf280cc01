@@ -1,0 +1,153 @@
+extends VBoxContainer
+
+@onready var https = $"../../../https"
+@onready var timer = $"../../Timer"
+@onready var refresh_button = %refreshButton
+@onready var pop = %"提示框"
+@onready var cooldown_timer = $"../../refreshButton/cooldown_timer"
+var poped: bool = false
+var cooldown: bool = false
+var subject_column = preload("res://UI/学科栏.tscn")
+var task = preload("res://UI/任务.tscn")
+
+func _ready():
+	TransferStation.main = self
+	$"../../refreshButton".size = Vector2(128, 128)
+	refresh(true)
+	
+func write_check():
+	var check_file = FileAccess.open("user://check_file.txt", FileAccess.WRITE)
+	var okayList = [] # ["语文,卷子"]
+	
+	for subject in get_children():
+		for i in subject.get_children():
+			if i is Task and i.state:
+				okayList.append(subject.subject_name + "," + i.text)
+	
+	check_file.store_csv_line(okayList)
+
+func read_check():
+	if not FileAccess.file_exists("user://check_file.txt"):
+		return
+		
+	var okayList = FileAccess.open("user://check_file.txt", FileAccess.READ).get_csv_line()
+	for i in okayList: # 分别为每个匹配的都完成一下
+		var s = i.split(",")
+		for subject in get_children():
+			for task in subject.get_children():
+				if task is Task and subject.subject_name == s[0] and task.text == s[1]:
+					task.state = true
+
+func open_website():
+	OS.shell_open(TransferStation.https.url) 
+
+
+func add_subject(subject_text: String) -> SubjectField:
+	var new_subject = subject_column.instantiate()
+	new_subject.subject_name = subject_text
+	add_child(new_subject)
+	return new_subject
+
+func user_canceled_tip():
+	poped = true
+
+func extract_date(text: String) -> Array:
+	# text: 今日作业xxxxxx%DATETIMESTRING（unix时间戳）
+	var array: Array = text.split("%")
+	if not len(text.split("%")) >= 2:
+		return [text, 0]
+	var date_text = int(array[1])
+	return [array[0], date_text]
+
+func refresh(on_ready: bool = false) -> bool:
+	# print("refresh")
+	var scroll: ScrollContainer = $".."
+	# 先保存目前的条子
+	var value = scroll.get_v_scroll_bar().value
+	
+	timer.start()
+	await timer.timeout
+	if cooldown:
+		# print("刷新冷却中")
+		return false
+	# print("刷新中" + "on_ready = ", on_ready)
+	if not on_ready:
+		write_check()
+	var original: Array = await https.get_homework()
+	if not original:
+		for i in get_children():
+			i.queue_free()
+		# print("refresh没有original")
+		return false
+	
+	var subject_array: Array = ["语文", "数学", "英语", "物理", "政治", "历史", "地理", "生物", "其他", "提醒"]
+	
+	var reverse_array: Array = original
+	reverse_array.reverse()
+	# 判断是不是更新提醒
+	for subject in reverse_array:  # [{ "subject": "数学", "contents": ["数学卷", "整理笔记"] }]
+		if subject["subject"] == "提醒":
+			if not poped:
+				var now_version = TransferStation.https.version
+				var update_type:String = subject["contents"][0]
+				var newest_version:String = subject["contents"][1].split("=")[1]
+				var update_content = subject["contents"][2]
+				var tip_text: String =  "最新版本为" + newest_version +"\n"+ update_content +"\n点击“确定”来跳转到下载网站"
+				if update_type == "%important_update":
+					pop.pop("重大更新", "有重大更新， " + tip_text, self, "open_website", "user_canceled_tip")
+				elif update_type == "%normal_update":
+					pop.pop("更新", "有更新 " + tip_text, self, "open_website", "user_canceled_tip")
+			# 弹出第一个（也就是提醒）
+			original.pop_front()
+			break
+	
+	for i in get_children():
+		i.queue_free()
+	for i in original:
+		var subject_name = i["subject"]
+		var subject = add_subject(subject_name)
+		for j in i["contents"]:
+			var task_array: Array = extract_date(j)
+			subject.add_task(task_array[0], task_array[1])
+	
+	timer.start()
+	await timer.timeout
+	read_check()
+	if not on_ready:
+		start_cooldown()
+	
+	scroll.get_v_scroll_bar().value = value
+	
+	return true
+
+func _on_refresh_button_button_down():
+	refresh_button.hide()
+	refresh_button.show()
+	# 用来释放焦点
+
+	var tween = create_tween()
+	tween.tween_property($"../../refreshButton", "rotation", 30, 1.5)
+	%refreshButton.rotation = 0
+	
+	if not await refresh():
+		return
+
+
+func _on_timer_timeout(): # rotate timer
+	%refreshButton.rotation += 1
+
+#func arrange_vertical():
+	#var spacing = 10 # 子节点之间的间距
+	#var current_y = 0 # 开始布局的Y坐标
+#
+	#for child in get_children():
+		#if child.visible: # 只排列可见的子节点
+			#child.position = Vector2(child.position.x, current_y)
+			#current_y += child.size.y + spacing
+
+func start_cooldown():
+	cooldown = true
+	cooldown_timer.start()
+
+func _on_cooldown_timer_timeout():
+	cooldown = false

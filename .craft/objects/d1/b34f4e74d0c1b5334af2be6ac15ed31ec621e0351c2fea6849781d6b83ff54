@@ -1,0 +1,4 @@
+extends Node
+
+var https: Node
+var particle: CPUParticles2D

@@ -1,0 +1,35 @@
+extends VBoxContainer
+class_name SubjectField
+
+@onready var label = $Label
+var task: PackedScene = preload("res://UI/任务.tscn")
+
+@export var subject_name = "数学"
+
+func _process(delta):
+	hide_when_empty()
+	label.text = subject_name
+
+func add_task(task_text: String):
+	var new_task = task.instantiate()
+	new_task.text = task_text
+	new_task.name = "任务" # 伟大的Godot自动帮我们重命名
+	new_task.subject = subject_name
+	add_child(new_task)
+	
+
+func get_taks_count() -> int:
+	var count: int = 0
+	for i in get_children():
+		if i is Task:
+			count += 1
+	return count
+
+
+func hide_when_empty():
+	var count: int = 0
+	for i in get_children():
+		if i is Task:
+			count += 1
+	if not count:
+		hide()

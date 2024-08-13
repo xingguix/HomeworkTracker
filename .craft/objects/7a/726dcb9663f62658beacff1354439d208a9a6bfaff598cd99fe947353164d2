@@ -1,0 +1,16 @@
+extends Control
+
+@onready var tip = %"提示框"
+
+
+func _ready():	
+	var date_file = FileAccess.open("user://date.txt", FileAccess.READ)
+	var now_date: Dictionary= Time.get_datetime_dict_from_system()
+	if not date_file: # 如果为空 就储存当前日期的字典 并弹出新人提醒
+		date_file = FileAccess.open("user://date.txt", FileAccess.WRITE)
+		date_file.store_string(JSON.stringify(now_date))
+		
+		tip.pop("欢迎！", "欢迎使用由徐智开发的作业查询系统！", self, "", "", true)
+		tip.pop("欢迎！", "请注意，你的作业栏与其他同学的作业栏都是共享的，也就是说别人添加作业你也可以看到。使用右上角的按钮来刷新", self, "", "", true)
+		tip.pop("欢迎！", "添加与修改作业仅限有密钥的人，您可以通过微信联系管理员来快速获取密钥，并在设置中添加。抱有恶意的行为会被收回密钥", self, "", "", true)
+		return 

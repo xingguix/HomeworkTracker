@@ -1,0 +1,4 @@
+extends Label
+
+func _physics_process(delta):
+	text = FileAccess.open("user://check_file.txt", FileAccess.READ).get_as_text()

@@ -1,0 +1,13 @@
+extends CPUParticles2D
+
+
+signal emit
+
+
+func _ready():
+	TransferStation.particle = self
+
+
+func _on_emit():
+	print("emitting")
+	emitting = true

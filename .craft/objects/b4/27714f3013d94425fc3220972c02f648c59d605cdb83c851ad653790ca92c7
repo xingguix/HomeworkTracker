@@ -1,0 +1,15 @@
+extends Panel
+
+@onready var buttonclicksound = $buttonclicksound
+@onready var yeesound = $yeesound
+
+var state: bool = false
+
+
+func _on_完成按钮_pressed():
+	buttonclicksound.play()
+	if state == false:
+		state = true
+		yeesound.start()
+	else:
+		state = false

@@ -1,0 +1,6 @@
+tree e124fa489468bcddcff6a8c2c086a573805f95cbdfc253114738ca104d94c77e
+parent ddfe1eaa06d9676c8b59429500b8bfdc973b5a1fa540e20b121a85779b0c8080
+time 1723441106108
+author Evercraft
+
+http_request改名为HomeworkRequester作为单例，基本重构完成，但还可以在_on_..._completed里判断是什么返回类型而不用在homework_request里额外说明，这样反而可以多线程，但就这样吧！

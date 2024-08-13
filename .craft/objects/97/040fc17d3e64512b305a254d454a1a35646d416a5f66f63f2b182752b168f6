@@ -1,0 +1,5 @@
+[folding]
+
+node_unfolds=[NodePath("按钮"), PackedStringArray("Text Behavior")]
+resource_unfolds=["res://UI/switch_button.tscn::StyleBoxFlat_50fb3", PackedStringArray(), "res://UI/switch_button.tscn::PlaceholderTexture2D_bflnb", PackedStringArray(), "res://UI/switch_button.tscn::PlaceholderTexture2D_sbar6", PackedStringArray()]
+nodes_folded=[]

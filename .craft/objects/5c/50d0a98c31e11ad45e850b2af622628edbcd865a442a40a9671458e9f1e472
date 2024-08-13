@@ -1,0 +1,14 @@
+res://UI/任务栏目.tscn
+res://UI/任务.tscn
+res://http/http_request.tscn
+res://UI/mainUI.tscn
+res://UI/学科栏.tscn
+res://UI/任务.gd
+res://UI/整体.gd
+res://http/https_manager.gd
+res://http/http_request.gd
+res://http/post.gd
+res://UI/任务栏目.gd
+res://UI/学科栏.gd
+res://sound/yeesound.gd
+res://UI/addButton.gd

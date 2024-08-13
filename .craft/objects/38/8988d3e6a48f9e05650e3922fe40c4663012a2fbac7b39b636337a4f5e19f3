@@ -1,0 +1,11 @@
+res://UI/mainUI.tscn
+res://http/http_request.tscn
+res://UI/任务.tscn
+res://UI/任务栏目.tscn
+res://UI/学科栏.tscn
+res://UI/DeleteAll.gd
+res://UI/mainUI.gd
+res://UI/确定框.gd
+res://UI/删除作业提示框.gd
+res://http/https_manager.gd
+res://UI/addButton.gd

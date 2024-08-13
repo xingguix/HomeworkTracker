@@ -1,0 +1,5 @@
+extends Button
+
+func _on_pressed():
+	if await TransferStation.https.check_op(TransferStation.https.key):
+		get_tree().change_scene_to_file("res://OPUI/op.tscn")

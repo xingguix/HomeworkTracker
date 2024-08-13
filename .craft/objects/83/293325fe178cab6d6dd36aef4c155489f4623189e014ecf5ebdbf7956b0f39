@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs7u8dpr7vh0s"]
+
+[ext_resource type="PackedScene" uid="uid://ik0bls4al5j6" path="res://UI/任务栏目.tscn" id="1_a66mr"]
+[ext_resource type="Script" path="res://UI/学科栏.gd" id="1_c64nd"]
+
+[node name="学科栏" type="VBoxContainer"]
+offset_right = 1080.0
+offset_bottom = 390.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_c64nd")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "数学"
+
+[node name="任务栏" parent="." instance=ExtResource("1_a66mr")]
+layout_mode = 2

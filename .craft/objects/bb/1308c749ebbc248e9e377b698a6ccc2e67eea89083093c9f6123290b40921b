@@ -1,0 +1,13 @@
+list=Array[Dictionary]([{
+"base": &"Object",
+"class": &"NotificationData",
+"icon": "",
+"language": &"GDScript",
+"path": "res://android/build/build/intermediates/assets/debug/mergeDebugAssets/addons/GodotAndroidNotificationSchedulerPlugin/NotificationData.gd"
+}, {
+"base": &"Node",
+"class": &"NotificationScheduler",
+"icon": "",
+"language": &"GDScript",
+"path": "res://android/build/build/intermediates/assets/debug/mergeDebugAssets/addons/GodotAndroidNotificationSchedulerPlugin/NotificationScheduler.gd"
+}])

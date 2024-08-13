@@ -1,0 +1,6 @@
+extends HTTPRequest
+
+
+func delete_homework():
+	var custom_headers = $"..".get_custom_headers()
+	request($"..".url + "/delete", custom_headers)

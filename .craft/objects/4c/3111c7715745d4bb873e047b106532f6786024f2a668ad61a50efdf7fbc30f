@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ik0bls4al5j6"]
+
+[ext_resource type="Script" path="res://UI/任务栏目.gd" id="1_ik0ab"]
+[ext_resource type="PackedScene" uid="uid://b7u4jfuaued81" path="res://UI/任务.tscn" id="1_kcxpo"]
+
+[node name="任务栏" type="AspectRatioContainer"]
+offset_right = 1080.0
+offset_bottom = 135.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+ratio = 8.0
+alignment_horizontal = 0
+alignment_vertical = 0
+script = ExtResource("1_ik0ab")
+
+[node name="任务" parent="." instance=ExtResource("1_kcxpo")]
+layout_mode = 2

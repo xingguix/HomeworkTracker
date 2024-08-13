@@ -1,0 +1,5 @@
+[folding]
+
+node_unfolds=[NodePath("ReturnButton"), PackedStringArray("Theme Overrides", "Theme Overrides/font_sizes"), NodePath("密钥系统/key"), PackedStringArray("Theme Overrides", "Theme Overrides/font_sizes"), NodePath("密钥系统/random"), PackedStringArray("Theme Overrides", "Theme Overrides/font_sizes"), NodePath("密钥系统/submit"), PackedStringArray("Theme Overrides", "Theme Overrides/font_sizes")]
+resource_unfolds=[]
+nodes_folded=[]

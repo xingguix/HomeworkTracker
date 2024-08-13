@@ -1,0 +1,71 @@
+[editor_metadata]
+
+executable_path="C:/Program Files (x86)/Steam/steamapps/common/Godot Engine/godot.windows.opt.tools.64.exe"
+use_advanced_connections=false
+
+[debug_options]
+
+run_live_debug=true
+run_reload_scripts=true
+run_deploy_remote_debug=false
+
+[dialog_bounds]
+
+create_new_node=Rect2(1435, 224, 900, 876)
+search_help=Rect2(640, 400, 1280, 800)
+project_settings=Rect2(556, 281, 901, 700)
+export=Rect2(689, 191, 1158, 1122)
+
+[recent_files]
+
+scripts=["Window", "Viewport", "TextureRect", "SceneTree", "OS", "Node", "Image", "FileAccess", "ColorPicker", "Array"]
+scenes=["res://test/test.tscn", "res://OPUI/op.tscn", "res://UI/任务.tscn", "res://UI/学科栏.tscn", "res://UI/mainUI.tscn", "res://http/http_request.tscn", "res://UI/任务栏目.tscn", "res://test/scroll_container.tscn", "res://http_request.tscn"]
+
+[script_setup]
+
+last_selected_language="GDScript"
+
+[linked_properties]
+
+Control:scale=true
+Panel:scale=true
+Label:scale=true
+Button:scale=true
+VBoxContainer:scale=true
+MultiNodeEdit:scale=true
+CenterContainer:scale=true
+AspectRatioContainer:scale=true
+PanelContainer:scale=true
+EditorDebuggerRemoteObject:scale=true
+AudioStreamPlayer2D:scale=true
+HSlider:scale=true
+TextureRect:scale=true
+MenuButton:scale=true
+TextEdit:scale=true
+TextureButton:scale=true
+ScrollContainer:scale=true
+HBoxContainer:scale=true
+VScrollBar:scale=true
+ColorRect:scale=true
+Container:scale=true
+ItemList:scale=true
+CheckButton:scale=true
+ProgressBar:scale=true
+TextureProgressBar:scale=true
+Node2D:scale=true
+LineEdit:scale=true
+CPUParticles2D:scale=true
+
+[export_options]
+
+default_filename="作业"
+
+[color_picker]
+
+recent_presets=PackedColorArray(1, 1, 1, 1, 0.898323, 0.401984, 0.633447, 1, 0.168707, 0.625227, 0.966203, 1, 0.171888, 0.632478, 0.935491, 1, 0.180558, 0.663446, 0.781522, 1, 0.269227, 0.613541, 0.966625, 1, 0.391538, 0.587999, 0.974374, 1, 0.825373, 0.46785, 0.635746, 1, 0.925996, 0.373596, 0.62337, 1)
+
+[texture_region_editor]
+
+snap_step=Vector2(8, 8)
+snap_separation=Vector2(0, 0)
+snap_mode=0

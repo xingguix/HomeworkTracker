@@ -1,0 +1,14 @@
+res://UI/mainUI.tscn
+res://UI/addButton.gd
+res://UI/整体.gd
+res://transfer_station.gd
+res://http/https_manager.gd
+res://UI/任务.tscn
+res://UI/trash.gd
+res://http/http_request.tscn
+res://UI/任务栏目.tscn
+res://UI/学科栏.tscn
+res://UI/mainUI.gd
+res://UI/删除作业提示框.gd
+res://http/delete.gd
+res://http/http_request.gd

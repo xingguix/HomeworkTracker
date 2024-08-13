@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy0cwyxj0l2d"]
+
+[ext_resource type="Script" path="res://test/test.gd" id="1_33pkh"]
+[ext_resource type="Script" path="res://addons/GodotAndroidNotificationSchedulerPlugin/NotificationScheduler.gd" id="2_p6jd8"]
+
+[node name="test" type="Node2D"]
+script = ExtResource("1_33pkh")
+
+[node name="NotificationScheduler" type="Node" parent="."]
+script = ExtResource("2_p6jd8")
+
+[connection signal="notification_opened" from="NotificationScheduler" to="." method="_on_notification_scheduler_notification_opened"]
+[connection signal="permission_denied" from="NotificationScheduler" to="." method="_on_notification_scheduler_permission_denied"]
+[connection signal="permission_granted" from="NotificationScheduler" to="." method="_on_notification_scheduler_permission_granted"]

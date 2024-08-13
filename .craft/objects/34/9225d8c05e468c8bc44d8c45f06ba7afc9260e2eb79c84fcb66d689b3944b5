@@ -1,0 +1,12 @@
+extends HTTPRequest
+
+var homework
+var custom_headers = ["X-App-Version: 3.0"]
+
+func get_homework():
+	request($"..".url + "/get", custom_headers)
+	await request_completed
+	return homework
+
+func _on_request_completed(result, response_code, headers, body):
+	homework = JSON.parse_string(body.get_string_from_utf8())

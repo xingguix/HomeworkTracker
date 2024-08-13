@@ -1,0 +1,31 @@
+extends Node
+
+
+var url = "http://42.202.37.195:27256"
+var version: float = 4.2
+var key:int
+
+func post_homework(data):
+	$post.send_post_request(data)
+
+func get_homework():
+	return await $get.get_homework()
+
+func delete_homework():
+	$delete.delete_homework()
+
+func read_key():
+	var key_file = FileAccess.open("user://key.data", FileAccess.READ)
+	if not key_file:
+		return
+	var user_key = key_file.get_as_text().to_int()
+	key = user_key
+
+func get_custom_headers():
+	return ["X-App-Version: " + str(version), "X-App-Key: " + str(key)]
+
+func _ready():
+	TransferStation.https = self
+
+func _physics_process(delta):
+	read_key()

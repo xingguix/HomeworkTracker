@@ -1,0 +1,6 @@
+extends Button
+
+func _on_pressed():
+	if visible:
+		if await TransferStation.https.check_op(%"密钥输入框".key):
+			get_tree().change_scene_to_file("res://OPUI/op.tscn")

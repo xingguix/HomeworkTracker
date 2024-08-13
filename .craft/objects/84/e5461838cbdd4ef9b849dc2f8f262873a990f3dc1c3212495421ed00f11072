@@ -1,0 +1,53 @@
+extends Panel
+
+@onready var buttonclicksound = $buttonclicksound
+@onready var yeesound = $yeesound
+@onready var texture_rect = $"完成按钮/TextureRect"
+@onready var label = $Label
+@onready var button = $"完成按钮"
+@onready var particle = TransferStation.particle
+
+var state: bool = false
+var task: String = "示例task"
+var subject: String
+
+func get_subject():
+	return subject
+
+func set_subject(sub: String):
+	subject = sub
+
+func set_state(b: bool):
+	label.text = task
+	state = b
+
+func get_text()->String:
+	label.text = task
+	return $Label.text
+
+func get_state() -> bool:
+	return state
+
+func _process(delta):
+	label.text = task
+	if state == true:
+		texture_rect.visible = true
+	else:
+		texture_rect.visible = false
+
+func toggle():
+	if state == false:
+		state = true
+		particle.emit_signal("emit")
+		yeesound.pitch_scale = randf_range(0.9, 1.1)
+		yeesound.start()
+	else:
+		state = false
+
+
+func _on_完成按钮_pressed():
+	toggle()
+	buttonclicksound.play()
+	button.hide()
+	button.show()
+	# 用来释放焦点

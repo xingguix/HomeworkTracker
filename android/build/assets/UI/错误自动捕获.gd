@@ -1,0 +1,9 @@
+extends Control
+
+var pop = get_parent()
+
+func _ready():
+	HomeworkRequester.get_error.connect(Callable(self, "_on_get_error"))
+
+func _on_get_error(text: String):
+	pop.pop("发生了点意外...\n", text, self, "", "", true)

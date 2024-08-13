@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs7u8dpr7vh0s"]
+
+[ext_resource type="Script" path="res://UI/subject_field.gd" id="1_g06bv"]
+
+[node name="学科栏" type="VBoxContainer"]
+visible = false
+offset_right = 1080.0
+offset_bottom = 110.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+script = ExtResource("1_g06bv")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "数学"

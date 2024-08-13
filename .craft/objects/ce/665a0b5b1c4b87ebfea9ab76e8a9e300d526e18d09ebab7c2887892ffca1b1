@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://f45nxhf2m2ii"]
+
+[ext_resource type="Script" path="res://http/http_request.gd" id="1_0557l"]
+[ext_resource type="Script" path="res://http/https_manager.gd" id="1_hjf2e"]
+[ext_resource type="Script" path="res://http/post.gd" id="3_660qv"]
+[ext_resource type="Script" path="res://http/delete.gd" id="4_4veya"]
+[ext_resource type="Script" path="res://http/check_op.gd" id="5_6re7o"]
+[ext_resource type="Script" path="res://http/get_ops.gd" id="6_d8k4l"]
+
+[node name="https" type="Node"]
+script = ExtResource("1_hjf2e")
+
+[node name="get" type="HTTPRequest" parent="."]
+script = ExtResource("1_0557l")
+
+[node name="post" type="HTTPRequest" parent="."]
+script = ExtResource("3_660qv")
+
+[node name="delete" type="HTTPRequest" parent="."]
+script = ExtResource("4_4veya")
+
+[node name="check_op" type="HTTPRequest" parent="."]
+script = ExtResource("5_6re7o")
+
+[node name="get_ops" type="HTTPRequest" parent="."]
+script = ExtResource("6_d8k4l")
+
+[connection signal="request_completed" from="get" to="get" method="_on_request_completed"]
+[connection signal="request_completed" from="post" to="post" method="_on_request_completed"]
+[connection signal="request_completed" from="check_op" to="check_op" method="_on_request_completed"]
+[connection signal="request_completed" from="get_ops" to="get_ops" method="_on_request_completed"]

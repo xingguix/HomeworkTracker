@@ -1,0 +1,17 @@
+extends HTTPRequest
+
+signal get_return
+
+func send_post_request(data):
+	var custom_headers = $"..".get_custom_headers() + ["Content-Type: application/json"]
+	# 开始发送请求
+	var error = request($"..".url + "/post", custom_headers, HTTPClient.METHOD_POST, data)
+	if error != OK:
+		print("请求发送失败")
+
+
+func _on_request_completed(result, response_code, headers, body: PackedByteArray):
+	var server_return: String = body.get_string_from_utf8()
+	if response_code != 200:
+		emit_signal("get_return", server_return)
+	print(str(response_code) + "  返回:" + server_return)

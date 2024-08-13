@@ -1,0 +1,26 @@
+extends HTTPRequest
+
+signal state_updated
+
+var state: bool
+
+func check_key(data: int):
+	var custom_headers = $"..".get_custom_headers() + ["Content-Type: application/json"]
+	var user_data = str(data)
+	# 开始发送请求
+	var error = request($"..".url + "/check_key", custom_headers, HTTPClient.METHOD_POST, user_data)
+	if error != OK:
+		print("请求发送失败")
+	await state_updated
+	return state
+
+func _on_request_completed(result, response_code, headers, body: PackedByteArray):
+	var returned = body.get_string_from_utf8()
+	# 好奇怪 为什么会加上\n 害我试了半天
+	match returned:
+		"true\n":
+			state = true
+		"false\n":
+			state = false
+
+	emit_signal("state_updated")

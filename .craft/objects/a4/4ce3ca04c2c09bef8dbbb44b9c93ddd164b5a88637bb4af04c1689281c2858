@@ -1,0 +1,39 @@
+extends TextureButton
+
+@onready var task = $".."
+@onready var progress_bar = $ProgressBar
+@onready var timer = $Timer
+@onready var explosive = $explosive
+var https = TransferStation.https
+
+
+func delete() -> void:
+	var homework = await https.get_homework() # [{ "contents": ["测试"], "subject": "数学" }]
+	for i in homework:
+		if i.subject == task.get_subject():
+			for j in i.contents:
+				if j == task.get_text():
+					i.contents.erase(j)
+	
+	await https.post_homework(JSON.stringify(homework))
+	task.get_node("..").queue_free()
+
+
+func _on_timer_timeout():
+	if not button_pressed:
+		timer.stop()
+		progress_bar.value = 0
+		explosive.stop()
+		return
+	
+	if progress_bar.value == 100:
+		timer.stop()
+		task.hide()
+		await explosive.finished
+		delete()
+	else:
+		progress_bar.value += 1
+
+func _on_button_down():
+	timer.start()
+	explosive.play()

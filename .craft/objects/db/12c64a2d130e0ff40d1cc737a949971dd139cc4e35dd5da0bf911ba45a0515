@@ -1,0 +1,90 @@
+extends Panel
+class_name Task
+
+@onready var buttonclicksound: AudioStreamPlayer2D = $buttonclicksound
+@onready var yeesound: AudioStreamPlayer2D = $yeesound
+@onready var texture_rect: TextureRect = $"完成按钮/TextureRect"
+@onready var label: Label = $Label
+@onready var button: Button = $"完成按钮"
+@onready var particle = TransferStation.particle
+@onready var date_label: Label = $date
+@onready var main = TransferStation.main
+var https = TransferStation.https
+
+var state: bool = false
+@export var text: String = ""
+var subject: String
+var date: int
+
+func get_final_text() -> String:
+	var final_text = text
+	if date:
+		final_text += "%" + str(date)
+	return final_text
+
+func toggle():
+	if state == true:
+		state = false
+		return
+	
+	state = true
+	particle.emit_signal("emit")
+	yeesound.pitch_scale = randf_range(0.9, 1.1)
+	yeesound.start()
+
+func _on_完成按钮_pressed():
+	toggle()
+	buttonclicksound.play()
+	button.hide()
+	button.show()
+	# 用来释放焦点
+
+func switch_scale():
+	var line_count = label.get_line_count()
+	var total_height = label.get_line_height() * line_count * 1.2
+	if total_height <= custom_minimum_size.y:
+		return
+	custom_minimum_size.y = total_height
+
+func calculate_date_day_difference(date1: int, date2: int) -> int:
+	var difference = ceil(float(date1 - date2) / (1 * 60 * 60 * 24))
+	return int(difference)
+
+func day_difference() -> int:
+	return calculate_date_day_difference(date, Time.get_unix_time_from_system())
+
+func refresh_date():
+	if not date:
+		date_label.hide()
+		return
+	
+	var time: int = day_difference()
+	if time > 0:
+		date_label.text = "还剩" + str(time) + "天"
+		date_label.modulate = Color.FLORAL_WHITE
+	else:
+		date_label.text = str(-time) + "天前"
+		date_label.modulate = Color.RED
+		
+func _process(delta):
+	switch_scale()
+	label.text = text
+	texture_rect.visible = state
+	refresh_date()
+
+## 返回当前任务是否到期
+func due() -> bool:
+	if date == 0:
+		return false
+	return day_difference() <= 0
+
+func delete() -> void:
+	var homework = await https.get_homework() # [{ "contents": ["测试"], "subject": "数学" }]
+	for i in homework:
+		if i.subject == subject: # 找到自己学科所在位置
+			for j in i.contents:
+				if j == get_final_text():
+					i.contents.erase(j)
+	
+	await https.post_homework(JSON.stringify(homework))
+	main.refresh()

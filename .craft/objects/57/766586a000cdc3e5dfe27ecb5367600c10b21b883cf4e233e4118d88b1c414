@@ -1,0 +1,6 @@
+extends Button
+
+@onready var noti = %NotificationScheduler
+
+func _on_pressed():
+	text = str(noti.has_post_notifications_permission())

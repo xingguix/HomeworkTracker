@@ -1,0 +1,6 @@
+tree 40c69c12f5282cb213160f7e09671df05815edc90cba5467958db164dea35a73
+parent 1a9669ddc05118872c21ca11ce2d8ae6b4f8586e081d0229855e277c3ce7fab3
+time 1712930248075
+author Evercraft
+
+更新功能：删除按钮点完后刷新，刷新间隔， 可修改 IP， 语数英物排序， 修复管理员界面按钮误触BUG

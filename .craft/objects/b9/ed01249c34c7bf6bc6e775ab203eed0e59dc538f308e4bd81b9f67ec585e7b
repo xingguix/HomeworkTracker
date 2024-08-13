@@ -1,0 +1,15 @@
+extends Control
+
+@onready var pop = %"提示框"
+
+func _ready():
+	var poster = []
+	for i in TransferStation.https.get_children():
+		if i.name in ["add_key", "post"]:
+			poster.append(i)
+	
+	for i in poster:
+		i.get_return.connect(_on_return_geted)
+
+func _on_return_geted(text: String):
+	pop.pop("服务器响应", text, self, "", "", true)
