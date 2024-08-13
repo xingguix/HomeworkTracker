@@ -1,5 +1,0 @@
-[folding]
-
-node_unfolds=[NodePath("."), PackedStringArray("theme_override_styles/panel", "Focus", "Layout/Anchor Points", "Layout/Anchor Offsets", "Layout/Grow Direction", "Layout/Transform", "Mouse"), NodePath("完成按钮"), PackedStringArray("Shortcut", "Theme Overrides", "Theme Overrides/styles", "theme_override_styles/pressed"), NodePath("完成按钮/TextureRect"), PackedStringArray("Visibility"), NodePath("Label"), PackedStringArray("Theme Overrides", "Theme Overrides/fonts", "Theme Overrides/font_sizes"), NodePath("trash"), PackedStringArray("Textures"), NodePath("trash/ProgressBar"), PackedStringArray("Radial Fill", "Textures", "texture_progress", "Mouse"), NodePath("edit"), PackedStringArray("Textures", "texture_normal"), NodePath("edit/ProgressBar"), PackedStringArray("Textures")]
-resource_unfolds=["res://UI/任务.tscn::StyleBoxFlat_rvbti", PackedStringArray("Corner Radius"), "res://UI/任务.tscn::StyleBoxFlat_mj2fk", PackedStringArray(), "res://UI/任务.tscn::StyleBoxFlat_11jyy", PackedStringArray()]
-nodes_folded=[NodePath("完成按钮"), NodePath("yeesound"), NodePath("edit")]

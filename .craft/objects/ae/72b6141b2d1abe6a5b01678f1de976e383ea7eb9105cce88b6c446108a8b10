@@ -1,7 +1,0 @@
-extends CheckButton
-
-
-func _on_toggled(toggled_on):
-	%"作业添加模块".visible = toggled_on
-	$show.visible = !$show.visible
-	$hide.visible = !$hide.visible

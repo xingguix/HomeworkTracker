@@ -1,6 +1,0 @@
-tree 4f1bf4fd987653cf06e24e09a3fc2c25d2e0e96fef1dd3d71a945082d27eb58b
-parent 11de0ea3e45d822b313c4a2a83e82cd2ab97dd6938be58e0ade96b538a1c51f6
-time 1716086597240
-author Evercraft
-
-重构了一下，使刷新速度变快了，增加了没有服务器时的提醒，不会崩溃了，而且版本号也是读取的项目设置里的

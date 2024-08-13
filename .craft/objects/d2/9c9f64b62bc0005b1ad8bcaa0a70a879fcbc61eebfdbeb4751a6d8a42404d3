@@ -1,4 +1,0 @@
-extends TextureButton
-
-func _on_pressed():
-	%"显示按钮"._on_toggled(false)

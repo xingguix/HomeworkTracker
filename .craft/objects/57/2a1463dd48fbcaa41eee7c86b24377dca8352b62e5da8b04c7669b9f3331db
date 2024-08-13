@@ -1,8 +1,0 @@
-extends Label
-
-func _on_setting_button_pressed():
-	var ops = await HomeworkRequester.get_OPs()
-	text = "作者与管理员:\n"
-	for i in ops:
-		if ops.find(i) != len(ops) - 1:
-			text += i + '、'

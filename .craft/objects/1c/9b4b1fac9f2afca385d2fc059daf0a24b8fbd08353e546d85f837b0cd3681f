@@ -1,5 +1,0 @@
-[folding]
-
-node_unfolds=[NodePath("按钮"), PackedStringArray("Text Behavior")]
-resource_unfolds=["res://UI/切换按钮.tscn::StyleBoxFlat_50fb3", PackedStringArray(), "res://UI/切换按钮.tscn::PlaceholderTexture2D_bflnb", PackedStringArray(), "res://UI/切换按钮.tscn::PlaceholderTexture2D_sbar6", PackedStringArray()]
-nodes_folded=[]

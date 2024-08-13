@@ -1,5 +1,0 @@
-extends Node
-
-var https: Http
-var particle: CPUParticles2D
-var main: Control

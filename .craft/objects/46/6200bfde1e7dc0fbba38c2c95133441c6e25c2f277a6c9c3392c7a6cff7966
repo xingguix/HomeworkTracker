@@ -1,7 +1,0 @@
-res://UI/task.tscn
-res://UI/tipTheme.tres
-res://http/http_request.tscn
-res://test/test.tscn
-res://UI/subject_field.tscn
-res://UI/mainUI.tscn
-res://UI/整体.gd

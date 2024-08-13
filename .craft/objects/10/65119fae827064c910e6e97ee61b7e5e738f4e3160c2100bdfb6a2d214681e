@@ -1,6 +1,0 @@
-extends Control
-
-@onready var line_edit = $LineEdit
-
-func get_defualt_duetime() -> int:
-	return int(line_edit.text)

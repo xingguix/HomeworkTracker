@@ -1,8 +1,0 @@
-res://UI/mainUI.tscn
-res://UI/tipTheme.tres
-res://http/http_request.tscn
-res://UI/任务.tscn
-res://UI/任务栏目.tscn
-res://UI/学科栏.tscn
-res://OPUI/op.tscn
-res://UI/OPButton.gd

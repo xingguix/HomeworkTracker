@@ -1,9 +1,0 @@
-res://UI/mainUI.tscn
-res://http/http_request.tscn
-res://UI/任务.tscn
-res://UI/任务栏目.tscn
-res://UI/学科栏.tscn
-res://test/scroll_container.tscn
-res://UI/mainUI.gd
-res://UI/显示按钮.gd
-res://UI/addButton.gd
