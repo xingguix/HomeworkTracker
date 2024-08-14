@@ -12,6 +12,6 @@
 
 ## 联系我们
 
-[官方QQ群](https://qm.qq.com/q/gSqv8rCAsE){:target="_blank"}
+[官方QQ群](https://qm.qq.com/q/gSqv8rCAsE)
 
-作者:[星轨](https://github.com/xingguix){:target="_blank"}
+作者:[星轨](https://github.com/xingguix)
