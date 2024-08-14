@@ -1,6 +1,6 @@
 # 作业查询
 
- [English Version](Github\README_EN.md)
+ [English Version](Github/README_EN.md)
 
 ## 简介
 
