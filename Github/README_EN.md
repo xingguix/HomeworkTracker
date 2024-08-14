@@ -12,6 +12,6 @@ This project is licensed under the [MIT License](LICENSE.txt). Feel free to chec
 
 ## Contact Us
 
-[Official QQ Group](https://qm.qq.com/q/gSqv8rCAsE){:target="_blank"}
+[Official QQ Group](https://qm.qq.com/q/gSqv8rCAsE)
 
-Author: [星轨](https://github.com/xingguix){:target="_blank"}
+Author: [星轨](https://github.com/xingguix)
