@@ -85,9 +85,6 @@ func day_difference() -> int:
 	return calculate_date_day_difference(date, Time.get_unix_time_from_system())
 
 static func difference_to_date(date1: Dictionary, days: int) -> int:
-	# 接下来的操作很奇怪 我不知道为什么 
-	# 出问题就它的事
-	days -= 1
 	var result_day = Time.get_unix_time_from_datetime_dict(date1) + (1 * 60 * 60 * 24) * days
 	return result_day
 
