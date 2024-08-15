@@ -11,9 +11,12 @@ class_name Task
 @onready var date_input = $Date/DateInput
 @onready var trash = $trash
 
+@export var animation_player: AnimationPlayer
+
 @export var text: String = ""
 @export var editable: bool ## 决定此task是否可编辑
 @export var enable_big_button: bool = true
+
 var state: bool = false
 var deleting: bool = false
 var subject: String
@@ -48,14 +51,20 @@ func parse_with_subject() -> String:
 	return subject + "/" + parse()
 
 func toggle():
-	state = !state
-	#if particle:
-		#particle.emit_signal("emit")
+	toggle_to_bool(!state)
+
+func toggle_to_bool(new_state: bool):
+	state = new_state
 	emit_signal("task_state_changed", self, state)
 	if state:
+		animation_player.play("finish")
 		yeesound.pitch_scale = randf_range(0.9, 1.1)
 		yeesound.start()
+	else:
+		animation_player.play("cancel")
+		await animation_player.animation_finished
 
+		
 func _on_完成按钮_pressed():
 	toggle()
 	buttonclicksound.play()
@@ -64,10 +73,6 @@ func _on_完成按钮_pressed():
 	# 用来释放焦点
 
 func switch_scale():
-	#var line_count = label.get_line_count()
-	#var total_height = label.get_line_height() * line_count * 1.2 + date_label.size.y
-	#if total_height <= custom_minimum_size.y:
-		#return
 	var total_height: float = label.get_minimum_size().y + date_label.get_minimum_size().y * 1.5
 	custom_minimum_size.y = total_height
 

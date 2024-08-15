@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b7u4jfuaued81"]
+[gd_scene load_steps=22 format=3 uid="uid://b7u4jfuaued81"]
 
 [ext_resource type="Script" path="res://UI/task.gd" id="1_u44pq"]
 [ext_resource type="Texture2D" uid="uid://v8fn5swq00vr" path="res://UI/texture/check-mark.png" id="2_122t8"]
@@ -52,7 +52,102 @@ corner_radius_bottom_left = 60
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5e3y"]
 
-[node name="任务" type="Panel"]
+[sub_resource type="Animation" id="Animation_rjuvv"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("完成按钮/TextureRect:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("完成按钮/TextureRect:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("完成按钮/TextureRect:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_o0qff"]
+resource_name = "cancel"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("完成按钮/TextureRect:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_4n2ed"]
+resource_name = "finish"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("完成按钮/TextureRect:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(50, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("完成按钮/TextureRect:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(50, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("完成按钮/TextureRect:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5rwfa"]
+_data = {
+"RESET": SubResource("Animation_rjuvv"),
+"cancel": SubResource("Animation_o0qff"),
+"finish": SubResource("Animation_4n2ed")
+}
+
+[node name="任务" type="Panel" node_paths=PackedStringArray("animation_player")]
 custom_minimum_size = Vector2(0, 145)
 anchors_preset = -1
 anchor_right = 1.0
@@ -62,6 +157,7 @@ grow_horizontal = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rvbti")
 script = ExtResource("1_u44pq")
+animation_player = NodePath("AnimationPlayer")
 metadata/_edit_use_anchors_ = true
 
 [node name="完成按钮" type="Button" parent="."]
@@ -80,7 +176,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_11jyy")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mj2fk")
 
 [node name="TextureRect" type="TextureRect" parent="完成按钮"]
-visible = false
 modulate = Color(0.427451, 0.384314, 0.819608, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -88,10 +183,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 12.0
 offset_top = 12.0
-offset_right = -11.0
-offset_bottom = -11.0
+offset_right = -10.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(30, 30)
 texture = ExtResource("2_122t8")
 expand_mode = 1
 
@@ -214,6 +310,11 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_0i8rg")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_su70n")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_j5e3y")
 alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5rwfa")
+}
 
 [connection signal="pressed" from="完成按钮" to="." method="_on_完成按钮_pressed"]
 [connection signal="pressed" from="trash" to="trash" method="_on_pressed"]
