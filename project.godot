@@ -23,7 +23,8 @@ config/icon="res://UI/texture/icon.png"
 
 [autoload]
 
-HomeworkRequester="*res://auto_load/HomeworkRequester.gd"
+HomeworkRequester="*res://auto_load/homework_requester.gd"
+ConfigLoader="*res://auto_load/config_loader.gd"
 
 [display]
 
