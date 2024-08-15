@@ -169,7 +169,7 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("11_i2qbw")
 
-[node name="PrintButton" type="TextureButton" parent="TopBar" node_paths=PackedStringArray("textedit", "panel", "copy_button")]
+[node name="PrintButton" type="TextureButton" parent="TopBar" node_paths=PackedStringArray("main", "textedit", "panel", "copy_button")]
 modulate = Color(0.577333, 0.646497, 0.743603, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -186,6 +186,7 @@ texture_normal = ExtResource("26_3k657")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("27_2t3r6")
+main = NodePath("../../Panel/VBoxContainer/ScrollContainer/整体")
 textedit = NodePath("../../Printer/TextEdit")
 panel = NodePath("../../Printer")
 copy_button = NodePath("../../Printer/CopyButton")
