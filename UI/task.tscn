@@ -16,8 +16,8 @@ corner_radius_top_right = 60
 corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mj2fk"]
-bg_color = Color(0.968627, 0.988235, 1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11jyy"]
+bg_color = Color(0.717647, 0.733333, 0.741176, 1)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
@@ -28,8 +28,8 @@ corner_radius_top_right = 60
 corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11jyy"]
-bg_color = Color(0.717647, 0.733333, 0.741176, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mj2fk"]
+bg_color = Color(0.968627, 0.988235, 1, 1)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
@@ -46,11 +46,11 @@ corner_radius_bottom_left = 60
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ef03r"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0i8rg"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_su70n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5e3y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0i8rg"]
 
 [sub_resource type="Animation" id="Animation_rjuvv"]
 length = 0.001
@@ -171,9 +171,9 @@ offset_right = 113.0
 offset_bottom = 41.0
 grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/normal = SubResource("StyleBoxFlat_mj2fk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_11jyy")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mj2fk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mj2fk")
 
 [node name="TextureRect" type="TextureRect" parent="完成按钮"]
 modulate = Color(0.427451, 0.384314, 0.819608, 1)
@@ -203,8 +203,8 @@ offset_bottom = 52.0
 grow_vertical = 2
 mouse_filter = 1
 theme_override_colors/background_color = Color(0, 0, 0, 0)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/selection_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_c8kiw")
 theme_override_font_sizes/font_size = 50
@@ -306,9 +306,9 @@ offset_bottom = 21.0
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxEmpty_0i8rg")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_su70n")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_j5e3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0i8rg")
 alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

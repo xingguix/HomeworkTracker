@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dikqhpf3lhhtw"]
+[gd_scene load_steps=26 format=3 uid="uid://dikqhpf3lhhtw"]
 
 [ext_resource type="FontFile" uid="uid://d1i1dliwg4n0a" path="res://UI/sans/SmileySans-Oblique.ttf" id="1_a5lvq"]
 [ext_resource type="Script" path="res://UI/mainUI.gd" id="1_u0wja"]
@@ -6,22 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://by4c2x85najxy" path="res://UI/main_list.tscn" id="4_ualae"]
 [ext_resource type="StyleBox" uid="uid://duofbwb8ag3v1" path="res://UI/tipTheme.tres" id="6_bhsfp"]
 [ext_resource type="Script" path="res://UI/提示框.gd" id="6_pafh1"]
-[ext_resource type="Texture2D" uid="uid://blctf5m1715ys" path="res://UI/texture/close.svg" id="8_5lnmj"]
 [ext_resource type="Texture2D" uid="uid://65cs8dnbcpau" path="res://UI/texture/trash-can.png" id="10_ybtdg"]
 [ext_resource type="Script" path="res://UI/DeleteAll.gd" id="11_i2qbw"]
 [ext_resource type="Script" path="res://UI/RefreshButton.gd" id="13_cn0e8"]
+[ext_resource type="PackedScene" uid="uid://8a6kv7h7faww" path="res://UI/settings/setting_panel.tscn" id="13_difud"]
 [ext_resource type="Script" path="res://UI/版本号.gd" id="15_drjc3"]
-[ext_resource type="Script" path="res://UI/密钥输入框.gd" id="17_0a0e3"]
 [ext_resource type="PackedScene" uid="uid://bragpp77ilwtu" path="res://UI/switch_button.tscn" id="17_5aeac"]
 [ext_resource type="Texture2D" uid="uid://cvsd3a3xa0650" path="res://UI/texture/settings.svg" id="19_76l1w"]
 [ext_resource type="Script" path="res://UI/SettingButton.gd" id="20_vl73l"]
-[ext_resource type="Script" path="res://UI/服务器地址输入框.gd" id="22_5712v"]
-[ext_resource type="Script" path="res://UI/OPs.gd" id="23_gb7q4"]
-[ext_resource type="Script" path="res://UI/OPButton.gd" id="24_14h6f"]
 [ext_resource type="PackedScene" uid="uid://c8vhe0jfrdxby" path="res://UI/printer.tscn" id="25_odimn"]
 [ext_resource type="Texture2D" uid="uid://domqhew3xticg" path="res://UI/texture/printer.svg" id="26_3k657"]
 [ext_resource type="Script" path="res://UI/PrintButton.gd" id="27_2t3r6"]
-[ext_resource type="Script" path="res://UI/CloseButton.gd" id="27_8lnj2"]
 
 [sub_resource type="Gradient" id="Gradient_4v66p"]
 offsets = PackedFloat32Array(0, 0.334728, 0.702929, 1)
@@ -39,20 +34,6 @@ corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdiup"]
-bg_color = Color(0.462745, 0.713726, 0.878431, 0.705882)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sl81c"]
-bg_color = Color(0.658824, 0.490196, 0.960784, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0oh7a"]
 bg_color = Color(0.825373, 0.46785, 0.635746, 1)
@@ -218,11 +199,11 @@ offset_right = -18.0
 offset_bottom = 102.732
 grow_horizontal = 0
 pivot_offset = Vector2(50, 50)
-theme_override_styles/normal = SubResource("StyleBoxTexture_effo6")
+theme_override_styles/focus = SubResource("StyleBoxTexture_effo6")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_effo6")
 theme_override_styles/hover = SubResource("StyleBoxTexture_effo6")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_effo6")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_effo6")
-theme_override_styles/focus = SubResource("StyleBoxTexture_effo6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_effo6")
 script = ExtResource("13_cn0e8")
 
 [node name="SettingButton" type="TextureButton" parent="TopBar" node_paths=PackedStringArray("setting_panel")]
@@ -251,112 +232,13 @@ size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_ywqyw")
 text = "编辑"
 
-[node name="SettingPanel" type="Panel" parent="."]
+[node name="SettingPanel" parent="." instance=ExtResource("13_difud")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 41.0
-offset_top = 156.0
-offset_right = -41.0
-offset_bottom = -232.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_fdiup")
-
-[node name="密钥" type="Control" parent="SettingPanel"]
-anchors_preset = 0
-offset_left = 22.0
-offset_top = 147.0
-offset_right = 918.0
-offset_bottom = 243.0
-
-[node name="密钥输入框" type="LineEdit" parent="SettingPanel/密钥"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 403.0
-offset_top = 11.0
-offset_right = 853.0
-offset_bottom = 90.0
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_sl81c")
-placeholder_text = "请输入你的密钥"
-alignment = 1
-max_length = 4
-script = ExtResource("17_0a0e3")
-
-[node name="Label" type="Label" parent="SettingPanel/密钥"]
-layout_mode = 0
-offset_left = 25.0
-offset_right = 218.0
-offset_bottom = 96.0
-theme_override_font_sizes/font_size = 60
-text = "密钥"
-
-[node name="服务器" type="Control" parent="SettingPanel"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 22.0
-offset_top = 243.0
-offset_right = 918.0
-offset_bottom = 339.0
-
-[node name="输入框" type="LineEdit" parent="SettingPanel/服务器"]
-layout_mode = 0
-offset_left = 403.0
-offset_top = 11.0
-offset_right = 853.0
-offset_bottom = 90.0
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_sl81c")
-placeholder_text = "请输入服务器地址，留空默认"
-alignment = 1
-script = ExtResource("22_5712v")
-
-[node name="Label" type="Label" parent="SettingPanel/服务器"]
-layout_mode = 0
-offset_left = 25.0
-offset_right = 325.0
-offset_bottom = 96.0
-theme_override_font_sizes/font_size = 60
-text = "服务器地址"
-
-[node name="OPs" type="Label" parent="SettingPanel"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = -387.0
-offset_right = 941.0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 50
-text = "作者与管理员：
-"
-script = ExtResource("23_gb7q4")
-
-[node name="OPButton" type="Button" parent="SettingPanel"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 47.0
-offset_top = 1305.0
-offset_right = 361.0
-offset_bottom = 1384.0
-script = ExtResource("24_14h6f")
-
-[node name="cool_down" type="Timer" parent="SettingPanel/OPButton"]
-wait_time = 3.0
-one_shot = true
-
-[node name="CloseButton" type="TextureButton" parent="SettingPanel"]
-layout_mode = 0
-offset_right = 96.0
-offset_bottom = 96.0
-texture_normal = ExtResource("8_5lnmj")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("27_8lnj2")
+offset_left = 77.0
+offset_top = 154.0
+offset_right = -77.0
+offset_bottom = -154.0
 
 [node name="Printer" parent="." instance=ExtResource("25_odimn")]
 layout_mode = 1
@@ -427,9 +309,9 @@ offset_bottom = -30.3077
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_a5lvq")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0oh7a")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0oh7a")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_w4obe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0oh7a")
 text = "取消
 "
 
@@ -448,9 +330,9 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_a5lvq")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_ftcou")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ftcou")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sjmbg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ftcou")
 text = "确认"
 
 [node name="tipTimer" type="Timer" parent="提示框"]
@@ -461,16 +343,7 @@ wait_time = 0.4
 [connection signal="pressed" from="TopBar/RefreshButton" to="Panel/VBoxContainer/ScrollContainer/整体" method="refresh"]
 [connection signal="pressed" from="TopBar/RefreshButton" to="TopBar/RefreshButton" method="_on_pressed"]
 [connection signal="pressed" from="TopBar/SettingButton" to="TopBar/SettingButton" method="_on_pressed"]
-[connection signal="pressed" from="TopBar/SettingButton" to="SettingPanel/OPs" method="_on_setting_button_pressed"]
 [connection signal="on_pressed" from="TopBar/EditButton" to="Panel/VBoxContainer/ScrollContainer/整体" method="edit_mode"]
-[connection signal="focus_entered" from="SettingPanel/密钥/密钥输入框" to="SettingPanel/密钥/密钥输入框" method="_on_focus_entered"]
-[connection signal="focus_exited" from="SettingPanel/密钥/密钥输入框" to="SettingPanel/密钥/密钥输入框" method="_on_focus_exited"]
-[connection signal="text_changed" from="SettingPanel/密钥/密钥输入框" to="SettingPanel/密钥/密钥输入框" method="_on_text_changed"]
-[connection signal="text_submitted" from="SettingPanel/密钥/密钥输入框" to="SettingPanel/密钥/密钥输入框" method="_on_text_submitted"]
-[connection signal="focus_exited" from="SettingPanel/服务器/输入框" to="SettingPanel/服务器/输入框" method="_on_focus_exited"]
-[connection signal="text_submitted" from="SettingPanel/服务器/输入框" to="SettingPanel/服务器/输入框" method="_on_text_submitted"]
-[connection signal="pressed" from="SettingPanel/OPButton" to="SettingPanel/OPButton" method="_on_pressed"]
-[connection signal="timeout" from="SettingPanel/OPButton/cool_down" to="SettingPanel/OPButton" method="_on_cool_down_timeout"]
 [connection signal="pressed" from="提示框/cancel" to="提示框" method="_on_cancel_pressed"]
 [connection signal="pressed" from="提示框/accept" to="提示框" method="_on_accept_pressed"]
 

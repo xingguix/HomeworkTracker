@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dycp62uuroi0b"]
+
+[ext_resource type="Script" path="res://UI/settings/setting.gd" id="1_lpun4"]
+
+[node name="SettingInput" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 67.0
+grow_horizontal = 2
+script = ExtResource("1_lpun4")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "密钥"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_font_sizes/font_size = 50

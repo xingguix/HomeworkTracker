@@ -1,9 +1,8 @@
 extends HTTPRequest
 
-var default_url:String = "http://59.47.74.10:27256"
 var url:String
 var version: float = float(ProjectSettings.get_setting("application/config/version"))
-var key: int
+var key: String
 var request_type: String
 var default_custom_headers = ["Version: " + str(version), "Key: " + str(key)]
 var json_headers = default_custom_headers + ["Content-Type: application/json"]
@@ -76,22 +75,6 @@ func get_OPs() -> Array:
 func add_key(data):
 	homework_request("/add_key", "ADD_KEY", HTTPClient.METHOD_POST, -1)
 
-
-func read_key():
-	var key_file = FileAccess.open("user://key.data", FileAccess.READ)
-	if not key_file:
-		return
-	var user_key = key_file.get_as_text().to_int()
-	key = user_key
-
-func read_server_IP():
-	var server_IP_file = FileAccess.open("user://server_IP.data", FileAccess.READ)
-	if not server_IP_file:
-		return
-	var user_server_IP = server_IP_file.get_as_text()
-	url = user_server_IP
-
-
 func _on_request_completed(result, response_code, headers, body):
 	var server_return = JSON.parse_string(body.get_string_from_utf8())
 	if response_code != 200:
@@ -100,10 +83,10 @@ func _on_request_completed(result, response_code, headers, body):
 	emit_signal("get_result", server_return)
 
 func _ready():
-	read_server_IP()
 	request_completed.connect(Callable(self, "_on_request_completed"))
 
 func _process(delta):
 	default_custom_headers = ["Version: " + str(version), "Key: " + str(key)]
-	read_key()
-	read_server_IP()
+	var config := ConfigLoader.read_config()
+	url = config["服务器IP"]
+	key = config["密钥"]
