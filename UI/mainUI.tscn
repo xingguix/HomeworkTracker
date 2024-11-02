@@ -25,15 +25,15 @@ colors = PackedColorArray(0.441093, 0.447171, 0.731125, 1, 0.611248, 0.736178, 0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5iij"]
 bg_color = Color(0.384314, 0.6, 0.6, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_effo6"]
-texture = ExtResource("3_i5467")
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywqyw"]
 bg_color = Color(0.430575, 0.665514, 0.463675, 1)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_effo6"]
+texture = ExtResource("3_i5467")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0oh7a"]
 bg_color = Color(0.825373, 0.46785, 0.635746, 1)
@@ -74,7 +74,7 @@ script = ExtResource("1_u0wja")
 
 [node name="Particle" type="CPUParticles2D" parent="."]
 z_index = 3
-position = Vector2(466, 2000)
+position = Vector2(540, 2400)
 rotation = -1.57079
 emitting = false
 amount = 60
@@ -135,7 +135,7 @@ default_duetime_input = NodePath("../../DefaultDueTimeInput")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 156.0
+offset_bottom = 128.0
 grow_horizontal = 2
 
 [node name="DeleteAll" type="TextureButton" parent="TopBar"]
@@ -150,77 +150,19 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("11_i2qbw")
 
-[node name="PrintButton" type="TextureButton" parent="TopBar" node_paths=PackedStringArray("main", "textedit", "panel", "copy_button")]
-modulate = Color(0.577333, 0.646497, 0.743603, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.7165
-anchor_top = 0.00458331
-anchor_right = 0.7165
-anchor_bottom = 0.00458331
-offset_left = -53.5
-offset_top = 10.285
-offset_right = 53.5
-offset_bottom = 108.285
-grow_horizontal = 2
-texture_normal = ExtResource("26_3k657")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("27_2t3r6")
-main = NodePath("../../Panel/VBoxContainer/ScrollContainer/整体")
-textedit = NodePath("../../Printer/TextEdit")
-panel = NodePath("../../Printer")
-copy_button = NodePath("../../Printer/CopyButton")
-metadata/_edit_use_anchors_ = true
-
 [node name="版本号" type="Label" parent="TopBar"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 399.0
-offset_top = 107.0
-offset_right = 473.0
-offset_bottom = 135.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 20
-text = "版本:0.0"
-script = ExtResource("15_drjc3")
-
-[node name="RefreshButton" type="Button" parent="TopBar"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.881
-anchor_right = 1.0
-anchor_bottom = 0.053
-offset_left = 1.0
-offset_top = 11.0
-offset_right = -18.0
-offset_bottom = 102.732
-grow_horizontal = 0
-pivot_offset = Vector2(50, 50)
-theme_override_styles/focus = SubResource("StyleBoxTexture_effo6")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_effo6")
-theme_override_styles/hover = SubResource("StyleBoxTexture_effo6")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_effo6")
-theme_override_styles/normal = SubResource("StyleBoxTexture_effo6")
-script = ExtResource("13_cn0e8")
-
-[node name="SettingButton" type="TextureButton" parent="TopBar" node_paths=PackedStringArray("setting_panel")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -218.0
-offset_top = 11.0
-offset_right = -118.0
-offset_bottom = 111.0
+offset_left = -77.0
+offset_top = 154.0
+offset_right = -3.0
+offset_bottom = 182.0
 grow_horizontal = 0
-texture_normal = ExtResource("19_76l1w")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("20_vl73l")
-setting_panel = NodePath("../../SettingPanel")
+theme_override_font_sizes/font_size = 20
+text = "版本:0.0"
+script = ExtResource("15_drjc3")
 
 [node name="EditButton" parent="TopBar" instance=ExtResource("17_5aeac")]
 layout_mode = 2
@@ -231,6 +173,49 @@ offset_bottom = 92.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_ywqyw")
 text = "编辑"
+
+[node name="RightBox" type="HBoxContainer" parent="TopBar"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -409.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="PrintButton" type="TextureButton" parent="TopBar/RightBox" node_paths=PackedStringArray("main", "textedit", "panel", "copy_button")]
+modulate = Color(0.577333, 0.646497, 0.743603, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("26_3k657")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("27_2t3r6")
+main = NodePath("../../../Panel/VBoxContainer/ScrollContainer/整体")
+textedit = NodePath("../../../Printer/TextEdit")
+panel = NodePath("../../../Printer")
+copy_button = NodePath("../../../Printer/CopyButton")
+
+[node name="RefreshButton" type="Button" parent="TopBar/RightBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxTexture_effo6")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_effo6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_effo6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_effo6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_effo6")
+script = ExtResource("13_cn0e8")
+
+[node name="SettingButton" type="TextureButton" parent="TopBar/RightBox" node_paths=PackedStringArray("setting_panel")]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("19_76l1w")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("20_vl73l")
+setting_panel = NodePath("../../../SettingPanel")
 
 [node name="SettingPanel" parent="." instance=ExtResource("13_difud")]
 visible = false
@@ -339,11 +324,11 @@ text = "确认"
 wait_time = 0.4
 
 [connection signal="pressed" from="TopBar/DeleteAll" to="TopBar/DeleteAll" method="_on_pressed"]
-[connection signal="pressed" from="TopBar/PrintButton" to="TopBar/PrintButton" method="_on_pressed"]
-[connection signal="pressed" from="TopBar/RefreshButton" to="Panel/VBoxContainer/ScrollContainer/整体" method="refresh"]
-[connection signal="pressed" from="TopBar/RefreshButton" to="TopBar/RefreshButton" method="_on_pressed"]
-[connection signal="pressed" from="TopBar/SettingButton" to="TopBar/SettingButton" method="_on_pressed"]
 [connection signal="on_pressed" from="TopBar/EditButton" to="Panel/VBoxContainer/ScrollContainer/整体" method="edit_mode"]
+[connection signal="pressed" from="TopBar/RightBox/PrintButton" to="TopBar/RightBox/PrintButton" method="_on_pressed"]
+[connection signal="pressed" from="TopBar/RightBox/RefreshButton" to="Panel/VBoxContainer/ScrollContainer/整体" method="refresh"]
+[connection signal="pressed" from="TopBar/RightBox/RefreshButton" to="TopBar/RightBox/RefreshButton" method="_on_pressed"]
+[connection signal="pressed" from="TopBar/RightBox/SettingButton" to="TopBar/RightBox/SettingButton" method="_on_pressed"]
 [connection signal="pressed" from="提示框/cancel" to="提示框" method="_on_cancel_pressed"]
 [connection signal="pressed" from="提示框/accept" to="提示框" method="_on_accept_pressed"]
 

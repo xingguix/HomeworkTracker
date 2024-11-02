@@ -80,6 +80,7 @@ func _on_request_completed(result, response_code, headers, body):
 	if response_code != 200:
 		emit_signal("get_error", server_return)
 		#print(str(response_code) + "  返回:" + server_return)
+	
 	emit_signal("get_result", server_return)
 
 func _ready():

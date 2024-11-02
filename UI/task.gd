@@ -90,7 +90,6 @@ static func difference_to_date(date1: Dictionary, days: int) -> int:
 
 ## 通过给定的天数算出应得的date，返回Unix时间戳
 static func today_to_date(days: int) -> int:
-	
 	return difference_to_date(Time.get_date_dict_from_system(), days)
 
 func refresh_date():
