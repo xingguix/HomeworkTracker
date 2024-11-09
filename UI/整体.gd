@@ -15,6 +15,8 @@ class_name Main
 var poped: bool = false
 var subject_column = preload("res://UI/subject_field.tscn")
 var place_holder: Control
+
+var focus_list: Array
 var focusing: bool = false
 
 func update(wait: bool = true):
@@ -268,6 +270,7 @@ func show_tasks() -> void:
 	for i in get_tasks():
 		i.show()
 
+## 现在没啥用了
 func least_difference() -> int:
 	var tasks : Array = get_tasks()
 	var difference: int = tasks[0].day_difference()
@@ -277,15 +280,17 @@ func least_difference() -> int:
 	return difference
 
 func focus_toggle(enable: bool) -> void:
-	#focusing = enable
-	#if not enable:
-		#show_tasks()
-	select_task()
+	if enable:
+		focus_list = await select_task()
+	else:
+		show_tasks()
+	focusing = enable
 
+## 逻辑：把所有没完成且在选择清单内的全都显示，其余一律不显示
 func focus() -> void:
-	var least_difference_number := least_difference()
 	for i in get_tasks():
-		var difference = i.day_difference()
-		if difference > least_difference_number or i.state:
+		if not i in focus_list:
+			i.hide()
+		elif i.state == true:
 			i.hide()
 		
