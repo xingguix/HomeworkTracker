@@ -10,3 +10,7 @@ func sure():
 
 func delete():
 	%"整体".delete_due_task()
+
+
+func _on_edit_button_on_pressed(enable: bool) -> void:
+	visible = enable

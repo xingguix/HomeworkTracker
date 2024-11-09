@@ -21,5 +21,4 @@ func _on_显示按钮_toggled(toggled_on):
 		panel.visible = toggled_on
 	show_icon.visible = toggled_on
 	hide_icon.visible = !toggled_on
-	delete_all.visible = toggled_on
 	emit_signal("on_pressed", button.button_pressed)

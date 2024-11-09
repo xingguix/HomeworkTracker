@@ -15,6 +15,7 @@ class_name Main
 var poped: bool = false
 var subject_column = preload("res://UI/subject_field.tscn")
 var place_holder: Control
+var focusing: bool = false
 
 func update(wait: bool = true):
 	if wait:
@@ -207,3 +208,30 @@ func _physics_process(delta):
 		if not input:
 			input = 1
 		i.default_duetime = input
+	if focusing:
+		focus()
+
+func show_tasks() -> void:
+	for i in get_tasks():
+		i.show()
+
+func least_difference() -> int:
+	var tasks : Array = get_tasks()
+	var difference: int = tasks[0].day_difference()
+	for i in get_tasks():
+		if i.day_difference() < difference:
+			difference = i.day_difference()
+	return difference
+
+func focus_toggle(enable: bool) -> void:
+	focusing = enable
+	if not enable:
+		show_tasks()
+
+func focus() -> void:
+	var least_difference_number := least_difference()
+	for i in get_tasks():
+		var difference = i.day_difference()
+		if difference > least_difference_number or i.state:
+			i.hide()
+		

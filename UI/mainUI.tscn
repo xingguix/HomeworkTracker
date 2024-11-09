@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dikqhpf3lhhtw"]
+[gd_scene load_steps=27 format=3 uid="uid://dikqhpf3lhhtw"]
 
 [ext_resource type="FontFile" uid="uid://d1i1dliwg4n0a" path="res://UI/sans/SmileySans-Oblique.ttf" id="1_a5lvq"]
 [ext_resource type="Script" path="res://UI/mainUI.gd" id="1_u0wja"]
@@ -24,13 +24,6 @@ colors = PackedColorArray(0.441093, 0.447171, 0.731125, 1, 0.611248, 0.736178, 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5iij"]
 bg_color = Color(0.45427, 0.552762, 0.74867, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywqyw"]
-bg_color = Color(0.639013, 0.714484, 0.861441, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_effo6"]
 texture = ExtResource("3_i5467")
@@ -152,8 +145,8 @@ grow_horizontal = 2
 visible = false
 modulate = Color(1, 0.379642, 0.798375, 1)
 layout_mode = 2
-offset_left = 181.0
-offset_right = 291.0
+offset_left = 550.0
+offset_right = 660.0
 offset_bottom = 111.0
 size_flags_horizontal = 3
 texture_normal = ExtResource("10_ybtdg")
@@ -178,11 +171,10 @@ script = ExtResource("15_drjc3")
 
 [node name="EditButton" parent="TopBar" instance=ExtResource("17_5aeac")]
 layout_mode = 1
-offset_top = 28.0
+offset_top = 36.0
 offset_right = 181.0
-offset_bottom = 90.0
+offset_bottom = 98.0
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_ywqyw")
 text = "编辑"
 
 [node name="RightBox" type="HBoxContainer" parent="TopBar"]
@@ -227,6 +219,14 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("20_vl73l")
 setting_panel = NodePath("../../../SettingPanel")
+
+[node name="FocusMode" parent="TopBar" instance=ExtResource("17_5aeac")]
+layout_mode = 0
+offset_left = 194.0
+offset_top = 38.0
+offset_right = 455.0
+offset_bottom = 99.0
+text = "专注模式"
 
 [node name="SettingPanel" parent="." instance=ExtResource("13_difud")]
 visible = false
@@ -337,10 +337,12 @@ wait_time = 0.4
 
 [connection signal="pressed" from="TopBar/DeleteAll" to="TopBar/DeleteAll" method="_on_pressed"]
 [connection signal="on_pressed" from="TopBar/EditButton" to="Panel/VBoxContainer/ScrollContainer/整体" method="edit_mode"]
+[connection signal="on_pressed" from="TopBar/EditButton" to="TopBar/DeleteAll" method="_on_edit_button_on_pressed"]
 [connection signal="pressed" from="TopBar/RightBox/PrintButton" to="TopBar/RightBox/PrintButton" method="_on_pressed"]
 [connection signal="pressed" from="TopBar/RightBox/RefreshButton" to="Panel/VBoxContainer/ScrollContainer/整体" method="refresh"]
 [connection signal="pressed" from="TopBar/RightBox/RefreshButton" to="TopBar/RightBox/RefreshButton" method="_on_pressed"]
 [connection signal="pressed" from="TopBar/RightBox/SettingButton" to="TopBar/RightBox/SettingButton" method="_on_pressed"]
+[connection signal="on_pressed" from="TopBar/FocusMode" to="Panel/VBoxContainer/ScrollContainer/整体" method="focus_toggle"]
 [connection signal="pressed" from="提示框/cancel" to="提示框" method="_on_cancel_pressed"]
 [connection signal="pressed" from="提示框/accept" to="提示框" method="_on_accept_pressed"]
 
