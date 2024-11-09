@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dikqhpf3lhhtw"]
+[gd_scene load_steps=28 format=3 uid="uid://dikqhpf3lhhtw"]
 
 [ext_resource type="FontFile" uid="uid://d1i1dliwg4n0a" path="res://UI/sans/SmileySans-Oblique.ttf" id="1_a5lvq"]
 [ext_resource type="Script" path="res://UI/mainUI.gd" id="1_u0wja"]
@@ -23,10 +23,10 @@ offsets = PackedFloat32Array(0, 0.334728, 0.702929, 1)
 colors = PackedColorArray(0.441093, 0.447171, 0.731125, 1, 0.611248, 0.736178, 0.922886, 1, 0.511216, 0.888587, 0.832556, 1, 0.836432, 0.92056, 0.664106, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5iij"]
-bg_color = Color(0.384314, 0.6, 0.6, 1)
+bg_color = Color(0.45427, 0.552762, 0.74867, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywqyw"]
-bg_color = Color(0.430575, 0.665514, 0.463675, 1)
+bg_color = Color(0.639013, 0.714484, 0.861441, 1)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
@@ -34,6 +34,16 @@ corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_effo6"]
 texture = ExtResource("3_i5467")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fsgpa"]
+bg_color = Color(0.237966, 0.482721, 0.634604, 0.705882)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_6mcag"]
+LineEdit/styles/normal = SubResource("StyleBoxFlat_fsgpa")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0oh7a"]
 bg_color = Color(0.825373, 0.46785, 0.635746, 1)
@@ -139,9 +149,11 @@ offset_bottom = 128.0
 grow_horizontal = 2
 
 [node name="DeleteAll" type="TextureButton" parent="TopBar"]
+visible = false
 modulate = Color(1, 0.379642, 0.798375, 1)
 layout_mode = 2
-offset_right = 110.0
+offset_left = 181.0
+offset_right = 291.0
 offset_bottom = 111.0
 size_flags_horizontal = 3
 texture_normal = ExtResource("10_ybtdg")
@@ -165,11 +177,10 @@ text = "版本:0.0"
 script = ExtResource("15_drjc3")
 
 [node name="EditButton" parent="TopBar" instance=ExtResource("17_5aeac")]
-layout_mode = 2
-offset_left = 110.0
-offset_top = 30.0
-offset_right = 291.0
-offset_bottom = 92.0
+layout_mode = 1
+offset_top = 28.0
+offset_right = 181.0
+offset_bottom = 90.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_ywqyw")
 text = "编辑"
@@ -224,6 +235,7 @@ offset_left = 77.0
 offset_top = 154.0
 offset_right = -77.0
 offset_bottom = -154.0
+theme = SubResource("Theme_6mcag")
 
 [node name="Printer" parent="." instance=ExtResource("25_odimn")]
 layout_mode = 1

@@ -121,12 +121,10 @@ func parse() -> Array:
 		array.append(i.parse())
 	return array
 
-var last_array: Array
 func refresh(on_ready: bool = false) -> bool:
 	var original: Array = await HomeworkRequester.get_homework()
-	if last_array == original:
+	if parse() == original:
 		return false
-	last_array = original
 	# 先保存目前的条子的状态
 	var value = v_scroll_bar.value
 	refresh_timer.start()
