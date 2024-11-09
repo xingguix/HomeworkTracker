@@ -1,7 +1,7 @@
 extends Node
 
 var default_settings: Dictionary = {
-	"服务器IP": "http://110.249.126.93:54793",
+	"服务器IP": "http://120.0.44.79:54793",
 	"密钥": ""
 }
 
