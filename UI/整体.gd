@@ -7,7 +7,7 @@ class_name Main
 @onready var v_scroll_bar: VScrollBar = get_parent().get_v_scroll_bar()
 @export var particle: CPUParticles2D
 @export var default_duetime_input: LineEdit
-
+@export var selecting_button: Button
 #@export var edit_mode_control: Control
 #@onready var defualt_duetime_control: Control = edit_mode_control.defualt_duetime_editer
 
@@ -211,6 +211,59 @@ func _physics_process(delta):
 	if focusing:
 		focus()
 
+func parse_with_state() -> Array:
+	var with_states: Array = parse()
+	#print(with_states)
+	for i in get_subject_fields():
+		var subject_dic: Dictionary
+		for j in with_states:
+			if i.subject_name == j["subject"]:
+				subject_dic = j
+				break
+		var state_array: Array = []
+		for index in range(len(subject_dic["contents"])):
+			# 再找到对应的task
+			var task: Task
+			for j in i.get_tasks():
+				var j_text = j.parse()
+				var dic_text = subject_dic["contents"][index]
+				if j_text == dic_text:
+					task = j
+			# 终于开始记录了
+			state_array.append(task.state)
+		subject_dic["states"] = state_array
+		with_states.append(subject_dic)
+	return with_states
+
+func select_task() -> Array:
+	selecting_button.show()
+	# 先保存目前任务状态
+	var former_state := parse_with_state()
+	for i in get_tasks():
+		# 然后让所有状态都为未完成
+		i.state = false
+	# 等待选择完成按钮的按下
+	await selecting_button.pressed
+	selecting_button.hide()
+	var selected_tasks: Array
+	for i in get_tasks():
+		if i.state:
+			selected_tasks.append(i)
+	# 再还原回来
+	for i in get_subject_fields():
+		var subject_former_state: Dictionary
+		for j in former_state:
+			# 是叫 "subject"吧
+			if j["subject"] == i.subject_name:
+				subject_former_state = j
+				break
+		for index in range(len(subject_former_state["contents"])):
+			for task in i.get_tasks():
+				if task.parse() == subject_former_state["contents"][index]:
+					var task_state: bool =  subject_former_state["states"][index]
+					task.state = task_state
+	return selected_tasks
+
 func show_tasks() -> void:
 	for i in get_tasks():
 		i.show()
@@ -224,9 +277,10 @@ func least_difference() -> int:
 	return difference
 
 func focus_toggle(enable: bool) -> void:
-	focusing = enable
-	if not enable:
-		show_tasks()
+	#focusing = enable
+	#if not enable:
+		#show_tasks()
+	select_task()
 
 func focus() -> void:
 	var least_difference_number := least_difference()
