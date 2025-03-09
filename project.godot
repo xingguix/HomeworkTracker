@@ -12,10 +12,10 @@ config_version=5
 
 config/name="作业查询"
 config/description="一个用于查询作业的软件"
-config/version="6.1"
+config/version="6.2"
 config/tags=PackedStringArray("非实验性")
 run/main_scene="res://UI/mainUI.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 boot_splash/show_image=false
 boot_splash/use_filter=false

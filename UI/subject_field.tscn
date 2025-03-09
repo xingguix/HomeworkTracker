@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cs7u8dpr7vh0s"]
 
-[ext_resource type="Script" path="res://UI/subject_field.gd" id="1_g06bv"]
+[ext_resource type="Script" uid="uid://baopix6lgstdo" path="res://UI/subject_field.gd" id="1_g06bv"]
 
 [node name="学科栏" type="VBoxContainer"]
 offset_right = 1080.0

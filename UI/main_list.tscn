@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://by4c2x85najxy"]
 
-[ext_resource type="Script" path="res://UI/整体.gd" id="1_cki47"]
+[ext_resource type="Script" uid="uid://b7dxe616mcx8y" path="res://UI/整体.gd" id="1_cki47"]
 
 [node name="整体" type="VBoxContainer"]
 size_flags_horizontal = 3

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bu227q05oitp"]
 
-[ext_resource type="Script" path="res://OPUI/ReturnButton.gd" id="1_sa6ul"]
-[ext_resource type="Script" path="res://OPUI/密钥系统.gd" id="2_i2h73"]
+[ext_resource type="Script" uid="uid://cfwhr85ouui4l" path="res://OPUI/ReturnButton.gd" id="1_sa6ul"]
+[ext_resource type="Script" uid="uid://dl1ew71c8j35g" path="res://OPUI/密钥系统.gd" id="2_i2h73"]
 [ext_resource type="StyleBox" uid="uid://duofbwb8ag3v1" path="res://UI/tipTheme.tres" id="2_v5k2s"]
-[ext_resource type="Script" path="res://UI/提示框.gd" id="3_y8jfb"]
+[ext_resource type="Script" uid="uid://byyf6lc2cnbh6" path="res://UI/提示框.gd" id="3_y8jfb"]
 [ext_resource type="FontFile" uid="uid://d1i1dliwg4n0a" path="res://UI/sans/SmileySans-Oblique.ttf" id="4_cufwr"]
 
 [node name="OP" type="Control"]

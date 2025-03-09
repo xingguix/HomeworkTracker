@@ -8,6 +8,7 @@ class_name Main
 @export var particle: CPUParticles2D
 @export var default_duetime_input: LineEdit
 @export var selecting_button: Button
+@onready var focus_mode_button: SwitchButton = $"../../../../TopBar/FocusMode"
 #@export var edit_mode_control: Control
 #@onready var defualt_duetime_control: Control = edit_mode_control.defualt_duetime_editer
 
@@ -133,7 +134,7 @@ func refresh(on_ready: bool = false) -> bool:
 	refresh_timer.start()
 #
 	#print("刷新中" + "on_ready = ", on_ready)
-	if not on_ready:
+	if not on_ready and original: # 只在有作业的情况下保存状态
 		write_check()
 	
 	if not original or not original is Array:
@@ -188,7 +189,7 @@ func put_place_holder():
 
 ## 这个方法只会在编辑模式开启或关闭时被调用
 func edit_mode(enable: bool):
-	#refresh_timer.paused = enable
+	refresh_timer.paused = enable
 	default_duetime_input.visible = enable
 	for i in get_subject_fields():
 		i.edit_mode = enable
@@ -245,6 +246,7 @@ func select_task() -> Array:
 		# 然后让所有状态都为未完成
 		i.state = false
 	# 等待选择完成按钮的按下
+	focus_mode_button.disabled = true
 	await selecting_button.pressed
 	selecting_button.hide()
 	var selected_tasks: Array
@@ -264,6 +266,7 @@ func select_task() -> Array:
 				if task.parse() == subject_former_state["contents"][index]:
 					var task_state: bool =  subject_former_state["states"][index]
 					task.state = task_state
+	focus_mode_button.disabled = false
 	return selected_tasks
 
 func show_tasks() -> void:

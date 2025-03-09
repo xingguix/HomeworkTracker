@@ -1,22 +1,22 @@
 [gd_scene load_steps=28 format=3 uid="uid://dikqhpf3lhhtw"]
 
 [ext_resource type="FontFile" uid="uid://d1i1dliwg4n0a" path="res://UI/sans/SmileySans-Oblique.ttf" id="1_a5lvq"]
-[ext_resource type="Script" path="res://UI/mainUI.gd" id="1_u0wja"]
+[ext_resource type="Script" uid="uid://domjp0sjte54k" path="res://UI/mainUI.gd" id="1_u0wja"]
 [ext_resource type="Texture2D" uid="uid://ds1x6m4bt45po" path="res://UI/texture/refresh.svg" id="3_i5467"]
 [ext_resource type="PackedScene" uid="uid://by4c2x85najxy" path="res://UI/main_list.tscn" id="4_ualae"]
 [ext_resource type="StyleBox" uid="uid://duofbwb8ag3v1" path="res://UI/tipTheme.tres" id="6_bhsfp"]
-[ext_resource type="Script" path="res://UI/提示框.gd" id="6_pafh1"]
+[ext_resource type="Script" uid="uid://byyf6lc2cnbh6" path="res://UI/提示框.gd" id="6_pafh1"]
 [ext_resource type="Texture2D" uid="uid://65cs8dnbcpau" path="res://UI/texture/trash-can.png" id="10_ybtdg"]
-[ext_resource type="Script" path="res://UI/DeleteAll.gd" id="11_i2qbw"]
-[ext_resource type="Script" path="res://UI/RefreshButton.gd" id="13_cn0e8"]
+[ext_resource type="Script" uid="uid://wa5u1rvtb5h3" path="res://UI/DeleteAll.gd" id="11_i2qbw"]
+[ext_resource type="Script" uid="uid://dwf234tttdwc7" path="res://UI/RefreshButton.gd" id="13_cn0e8"]
 [ext_resource type="PackedScene" uid="uid://8a6kv7h7faww" path="res://UI/settings/setting_panel.tscn" id="13_difud"]
-[ext_resource type="Script" path="res://UI/版本号.gd" id="15_drjc3"]
+[ext_resource type="Script" uid="uid://crla61hdpii0x" path="res://UI/版本号.gd" id="15_drjc3"]
 [ext_resource type="PackedScene" uid="uid://bragpp77ilwtu" path="res://UI/switch_button.tscn" id="17_5aeac"]
 [ext_resource type="Texture2D" uid="uid://cvsd3a3xa0650" path="res://UI/texture/settings.svg" id="19_76l1w"]
-[ext_resource type="Script" path="res://UI/SettingButton.gd" id="20_vl73l"]
+[ext_resource type="Script" uid="uid://cej7likrx1bbk" path="res://UI/SettingButton.gd" id="20_vl73l"]
 [ext_resource type="PackedScene" uid="uid://c8vhe0jfrdxby" path="res://UI/printer.tscn" id="25_odimn"]
 [ext_resource type="Texture2D" uid="uid://domqhew3xticg" path="res://UI/texture/printer.svg" id="26_3k657"]
-[ext_resource type="Script" path="res://UI/PrintButton.gd" id="27_2t3r6"]
+[ext_resource type="Script" uid="uid://5teajcumxaf0" path="res://UI/PrintButton.gd" id="27_2t3r6"]
 
 [sub_resource type="Gradient" id="Gradient_4v66p"]
 offsets = PackedFloat32Array(0, 0.334728, 0.702929, 1)
@@ -188,6 +188,7 @@ offset_right = 181.0
 offset_bottom = 98.0
 size_flags_horizontal = 3
 text = "编辑"
+disabled = false
 
 [node name="RightBox" type="HBoxContainer" parent="TopBar"]
 layout_mode = 1
@@ -239,6 +240,7 @@ offset_top = 38.0
 offset_right = 455.0
 offset_bottom = 99.0
 text = "专注模式"
+disabled = false
 
 [node name="FinishSelecting" type="Button" parent="TopBar"]
 visible = false

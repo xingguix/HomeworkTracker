@@ -1,13 +1,13 @@
 [gd_scene load_steps=22 format=3 uid="uid://b7u4jfuaued81"]
 
-[ext_resource type="Script" path="res://UI/task.gd" id="1_u44pq"]
+[ext_resource type="Script" uid="uid://r4mdtebm42nn" path="res://UI/task.gd" id="1_u44pq"]
 [ext_resource type="Texture2D" uid="uid://v8fn5swq00vr" path="res://UI/texture/check-mark.png" id="2_122t8"]
 [ext_resource type="FontFile" uid="uid://d1i1dliwg4n0a" path="res://UI/sans/SmileySans-Oblique.ttf" id="3_c8kiw"]
 [ext_resource type="AudioStream" uid="uid://jo86bw338q2d" path="res://UI/sound/buttonclick.wav" id="4_ligon"]
 [ext_resource type="AudioStream" uid="uid://bl1llxleu3tfl" path="res://UI/sound/yee.wav" id="5_6wjpc"]
-[ext_resource type="Script" path="res://UI/yeesound.gd" id="6_76hsb"]
+[ext_resource type="Script" uid="uid://c8tfrao11h57d" path="res://UI/yeesound.gd" id="6_76hsb"]
 [ext_resource type="Texture2D" uid="uid://65cs8dnbcpau" path="res://UI/texture/trash-can.png" id="7_0bfa4"]
-[ext_resource type="Script" path="res://UI/trash.gd" id="8_p0vwy"]
+[ext_resource type="Script" uid="uid://b01jtpycpw2uq" path="res://UI/trash.gd" id="8_p0vwy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvbti"]
 bg_color = Color(0.486275, 0.596078, 0.839216, 1)
@@ -142,9 +142,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5rwfa"]
 _data = {
-"RESET": SubResource("Animation_rjuvv"),
-"cancel": SubResource("Animation_o0qff"),
-"finish": SubResource("Animation_4n2ed")
+&"RESET": SubResource("Animation_rjuvv"),
+&"cancel": SubResource("Animation_o0qff"),
+&"finish": SubResource("Animation_4n2ed")
 }
 
 [node name="任务" type="Panel" node_paths=PackedStringArray("animation_player")]
@@ -313,7 +313,7 @@ alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_5rwfa")
+&"": SubResource("AnimationLibrary_5rwfa")
 }
 
 [connection signal="pressed" from="完成按钮" to="." method="_on_完成按钮_pressed"]

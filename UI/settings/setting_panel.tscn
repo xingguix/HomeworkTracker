@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://8a6kv7h7faww"]
 
-[ext_resource type="Script" path="res://UI/settings/SettingPanel.gd" id="1_v2f01"]
+[ext_resource type="Script" uid="uid://dxu76y6w7lhmb" path="res://UI/settings/SettingPanel.gd" id="1_v2f01"]
 [ext_resource type="Texture2D" uid="uid://blctf5m1715ys" path="res://UI/texture/close.svg" id="2_xghah"]
-[ext_resource type="Script" path="res://UI/CloseButton.gd" id="3_x0d07"]
+[ext_resource type="Script" uid="uid://cjaw0mp4aosqm" path="res://UI/CloseButton.gd" id="3_x0d07"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdiup"]
 bg_color = Color(0.462745, 0.713726, 0.878431, 0.705882)

@@ -9,6 +9,11 @@ class_name SwitchButton
 @export var panel: Control
 @export var text: String = "文本"
 @onready var delete_all: TextureButton = $"../DeleteAll"
+@export var disabled: bool = false:
+	set(new_value):
+		disabled = new_value
+		if button:
+			button.disabled = new_value
 
 signal on_pressed(enable: bool)
 
